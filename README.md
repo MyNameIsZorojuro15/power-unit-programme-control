@@ -50,7 +50,7 @@ python3 -m pip install -e '.[reports]'
 python3 scripts/build_brief.py
 ```
 
-The supplied `.xlsx` is editable in Excel or LibreOffice. Its optional authoring script uses `@oai/artifact-tool`, available in the Codex authoring runtime. That package is **not required** to reproduce the Python calculations, CSVs, JSON or HTML report. The workbook's fixed resource sequence is documented below and in its opening view.
+The supplied `.xlsx` is editable in Excel or LibreOffice. Rebuilding it with the optional authoring script requires an installed `@oai/artifact-tool` package. That package is **not required** to reproduce the Python calculations, CSVs, JSON or HTML report. The workbook's fixed resource sequence is documented below and in its opening view.
 
 ## Calculations and controls
 
