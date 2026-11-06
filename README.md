@@ -65,7 +65,7 @@ The Excel workbook uses one live deterministic build with one authoritative case
 
 ## Verification
 
-The repository contains **27 unit/integration tests**, including hand-calculated schedules and earned value, shared-resource conflicts, zero-duration milestones, preserved actuals, invalid records, scenario immutability, cost reconciliation, seed reproducibility and incomplete acceptance.
+The repository contains **27 tests** covering unit and integration cases, including hand-calculated schedules and earned value, shared-resource conflicts, zero-duration milestones, preserved actuals, invalid records, scenario immutability, cost reconciliation, seed reproducibility and incomplete acceptance.
 
 Additional authoring checks compare all three workbook scenarios with Python, alter a later duration to verify propagation, test a partial acceptance record, and exercise the offline report's scenario selection, search, filters, JSON download and mobile layout. Native workbook recalculation is verified with disposable copies using `scripts/verify_native_workbook.py --soffice /path/to/soffice`. See [verification notes](docs/VERIFICATION.md) for the observed results and limits.
 
