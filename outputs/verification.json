@@ -1,0 +1,83 @@
+{
+  "checked_date": "2026-11-06",
+  "model_version": "1.0.0",
+  "unit_integration_tests": 27,
+  "workbook_authoring_checks": {
+    "cases": [
+      {
+        "case": "current",
+        "finish": 96,
+        "eac": 1232383
+      },
+      {
+        "case": "expedite",
+        "finish": 91,
+        "eac": 1248583
+      },
+      {
+        "case": "recovery",
+        "finish": 88,
+        "eac": 1261583
+      }
+    ],
+    "later_duration_propagation": true,
+    "unfinished_evidence_blocked": true,
+    "unselected_blank_ignored": true,
+    "active_blank_exposed": true,
+    "zero_spending_preserved": true
+  },
+  "workbook_native_libreoffice": [
+    {
+      "case": "current",
+      "finish": 96.0,
+      "eac": 1232383.0,
+      "accepted": 3.0,
+      "formula_errors": 0
+    },
+    {
+      "case": "expedite",
+      "finish": 91.0,
+      "eac": 1248583.0,
+      "accepted": 3.0,
+      "formula_errors": 0
+    },
+    {
+      "case": "recovery",
+      "finish": 88.0,
+      "eac": 1261583.0,
+      "accepted": 3.0,
+      "formula_errors": 0
+    }
+  ],
+  "report_browser_checks": {
+    "cases": 3,
+    "search": true,
+    "stream_filter": true,
+    "critical_filter": true,
+    "empty_state": true,
+    "partial_acceptance_guard": true,
+    "download": true,
+    "mobile_overflow": false,
+    "javascript_errors": []
+  },
+  "analytical_reproduction": {
+    "analysis.json": true,
+    "management_report.html": true,
+    "schedule_current.csv": true,
+    "schedule_expedite.csv": true,
+    "schedule_recovery.csv": true
+  },
+  "visual_reviews": [
+    "7 workbook sheets",
+    "3-page case study",
+    "desktop and mobile report"
+  ],
+  "input_sha256": {
+    "actions.json": "9a5a131e8c395aeb98b6d969b409b2e28304733e50abd1e5ae89ae23f568e820",
+    "config.json": "b58e2133ed874bc44fd9006a8efea98d44d82640193f4975e5f2738d977bc95d",
+    "evidence.json": "278c1489ea0272cd40cfd49adc952170bbbd3cd412b45f1a84d8c9c75a29ccd4",
+    "risks.json": "d01e7a023ddcc9e6999b30be84c039c884c73d3909e1752494c56307f9db24d5",
+    "tasks.csv": "dc1a341cc5314d9bc98b3107865c0160dd019f8a657b39395647510502430879"
+  },
+  "limits": "Fictional inputs. No real Audi forecast, engineering validation or production acceptance. Desktop Microsoft Excel not tested."
+}

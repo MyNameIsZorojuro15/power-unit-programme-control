@@ -1,0 +1,47 @@
+[
+  {
+    "id": "A01",
+    "owner": "Supply chain lead",
+    "due_day": 32,
+    "state": "Open",
+    "linked": "R01",
+    "action": "Obtain a written finishing and dispatch commitment for both electrical demonstrators.",
+    "decision": "D01"
+  },
+  {
+    "id": "A02",
+    "owner": "Test lead",
+    "due_day": 33,
+    "state": "Open",
+    "linked": "R03",
+    "action": "Confirm protected Dyno A reservations and the escalation route for a clash.",
+    "decision": "D02"
+  },
+  {
+    "id": "A03",
+    "owner": "Finance lead",
+    "due_day": 33,
+    "state": "Open",
+    "linked": "D01",
+    "action": "Validate the incremental recovery quote and avoid double-counting support costs.",
+    "decision": "D01"
+  },
+  {
+    "id": "A04",
+    "owner": "Validation lead",
+    "due_day": 34,
+    "state": "Open",
+    "linked": "R02",
+    "action": "Agree test entry criteria and retain acceptance scope across recovery options.",
+    "decision": "D02"
+  },
+  {
+    "id": "A05",
+    "owner": "Configuration lead",
+    "due_day": 35,
+    "state": "Open",
+    "linked": "R04",
+    "action": "Assign submission dates for each missing mandatory record.",
+    "decision": "D03"
+  }
+]

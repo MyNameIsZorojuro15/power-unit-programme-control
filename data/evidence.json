@@ -1,0 +1,134 @@
+[
+  {
+    "id": "EV01",
+    "name": "Requirements approval",
+    "task_id": "G01",
+    "state": "Accepted",
+    "owner": "Systems lead",
+    "reference": "DEMO-REQ-001",
+    "approver": "Technical lead",
+    "accepted_day": 7,
+    "mandatory": true
+  },
+  {
+    "id": "EV02",
+    "name": "ICE design release",
+    "task_id": "ICE02",
+    "state": "Accepted",
+    "owner": "ICE lead",
+    "reference": "DEMO-ICE-DR1",
+    "approver": "Technical lead",
+    "accepted_day": 19,
+    "mandatory": true
+  },
+  {
+    "id": "EV03",
+    "name": "Electrical design release",
+    "task_id": "ERS02",
+    "state": "Accepted",
+    "owner": "ERS lead",
+    "reference": "DEMO-ERS-DR1",
+    "approver": "Technical lead",
+    "accepted_day": 19,
+    "mandatory": true
+  },
+  {
+    "id": "EV04",
+    "name": "Controls validation report",
+    "task_id": "CTL05",
+    "state": "Missing",
+    "owner": "Controls lead",
+    "reference": "",
+    "approver": "",
+    "accepted_day": null,
+    "mandatory": true
+  },
+  {
+    "id": "EV05",
+    "name": "Incoming inspection records",
+    "task_id": "ERS05",
+    "state": "Missing",
+    "owner": "Quality lead",
+    "reference": "",
+    "approver": "",
+    "accepted_day": null,
+    "mandatory": true
+  },
+  {
+    "id": "EV06",
+    "name": "Subsystem test reports",
+    "task_id": "G02",
+    "state": "Missing",
+    "owner": "Test lead",
+    "reference": "",
+    "approver": "",
+    "accepted_day": null,
+    "mandatory": true
+  },
+  {
+    "id": "EV07",
+    "name": "Endurance validation report",
+    "task_id": "INT05",
+    "state": "Missing",
+    "owner": "Validation lead",
+    "reference": "",
+    "approver": "",
+    "accepted_day": null,
+    "mandatory": true
+  },
+  {
+    "id": "EV08",
+    "name": "Thermal and energy report",
+    "task_id": "INT06",
+    "state": "Missing",
+    "owner": "Validation lead",
+    "reference": "",
+    "approver": "",
+    "accepted_day": null,
+    "mandatory": true
+  },
+  {
+    "id": "EV09",
+    "name": "Nonconformance closure",
+    "task_id": "INT08",
+    "state": "Missing",
+    "owner": "Quality lead",
+    "reference": "",
+    "approver": "",
+    "accepted_day": null,
+    "mandatory": true
+  },
+  {
+    "id": "EV10",
+    "name": "Regression validation report",
+    "task_id": "INT09",
+    "state": "Missing",
+    "owner": "Validation lead",
+    "reference": "",
+    "approver": "",
+    "accepted_day": null,
+    "mandatory": true
+  },
+  {
+    "id": "EV11",
+    "name": "Configuration baseline",
+    "task_id": "PM04",
+    "state": "Missing",
+    "owner": "Configuration lead",
+    "reference": "",
+    "approver": "",
+    "accepted_day": null,
+    "mandatory": true
+  },
+  {
+    "id": "EV12",
+    "name": "Interface acceptance",
+    "task_id": "PM05",
+    "state": "Missing",
+    "owner": "Systems lead",
+    "reference": "",
+    "approver": "",
+    "accepted_day": null,
+    "mandatory": true
+  }
+]

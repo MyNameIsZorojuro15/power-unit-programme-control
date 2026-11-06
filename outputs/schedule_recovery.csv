@@ -1,0 +1,39 @@
+id,name,stream,owner,baseline_start,baseline_finish,forecast_start,forecast_finish,forecast_finish_date,variance_days,float_days,critical,resource,resource_wait,progress,actual_cost,etc
+PM01,Scope and acceptance criteria,Programme,Programme manager,0,3,0,3,2027-01-14,0,11,False,,0,1.0,12360,0
+PM02,Interface and responsibility agreement,Programme,Systems lead,3,7,3,7,2027-01-20,0,11,False,,0,1.0,18540,0
+G01,Requirements review,Programme,Technical lead,7,7,7,7,2027-01-20,0,11,False,,0,1.0,0,0
+ICE01,Combustion assembly requirements,ICE,ICE lead,7,12,7,12,2027-01-27,0,11,False,,0,1.0,22660,0
+ERS01,Electrical system requirements,ERS,ERS lead,7,12,7,12,2027-01-27,0,14,False,,0,1.0,25750,0
+CTL01,Controls requirements,Controls,Controls lead,7,11,7,11,2027-01-26,0,16,False,,0,1.0,18540,0
+INT01,Test article and bench plan,Integration,Test lead,7,12,7,12,2027-01-27,0,20,False,,0,1.0,20600,0
+ICE02,Detail design and supplier release,ICE,ICE lead,12,19,12,19,2027-02-05,0,11,False,,0,1.0,39140,0
+ERS02,Electrical design and supplier release,ERS,ERS lead,12,19,12,19,2027-02-05,0,14,False,,0,1.0,43260,0
+CTL02,Software architecture,Controls,Controls lead,11,17,11,17,2027-02-03,0,16,False,,0,1.0,28840,0
+INT02,Bench instrumentation and fixtures,Integration,Test lead,12,20,12,20,2027-02-08,0,20,False,,0,1.0,32960,0
+ICE03,Critical castings procurement,ICE,Supply chain lead,19,31,30,31,2027-02-23,0,1,False,,0,0.917,84181,7478
+ICE04,Rotating assembly procurement,ICE,Supply chain lead,19,29,30,32,2027-02-24,3,0,True,,0,0.846,59389,10611
+ERS03,Energy storage demonstrator delivery,ERS,Supply chain lead,19,33,30,37,2027-03-03,4,3,False,,0,0.423,43400,58104
+ERS04,Motor generator demonstrator delivery,ERS,Supply chain lead,19,31,30,34,2027-02-26,3,6,False,,0,0.55,47520,38160
+CTL03,Control software implementation,Controls,Controls lead,17,27,17,29,2027-02-19,2,16,False,,0,1.0,45320,0
+CTL04,Hardware in loop test preparation,Controls,Validation lead,17,24,17,24,2027-02-12,0,21,False,,0,1.0,25750,0
+ICE05,Incoming inspection,ICE,Quality lead,31,34,32,35,2027-03-01,1,0,True,,0,0.0,0,12240
+ERS05,Electrical incoming inspection,ERS,Quality lead,33,36,37,40,2027-03-08,4,3,False,,0,0.0,0,14280
+CTL05,Hardware in loop validation,Controls,Validation lead,27,33,30,35,2027-03-01,2,15,False,HIL rig,0,0.167,5411,26489
+ICE06,ICE test assembly,ICE,Build lead,34,39,35,40,2027-03-08,1,0,True,,0,0.0,0,35700
+ERS06,Electrical subsystem assembly,ERS,Build lead,36,40,40,44,2027-03-12,4,3,False,,0,0.0,0,28560
+ICE07,ICE subsystem test,ICE,Test lead,39,46,40,47,2027-03-17,1,0,True,Dyno A,0,0.0,0,51000
+ERS07,Electrical subsystem test,ERS,Test lead,46,52,47,53,2027-03-25,1,0,True,Dyno A,3,0.0,0,42840
+CTL06,Calibration package review,Controls,Controls lead,33,36,35,38,2027-03-04,2,15,False,,0,0.0,0,14280
+G02,Subsystem evidence review,Programme,Technical lead,52,52,53,53,2027-03-25,1,0,True,,0,0.0,0,0
+INT03,Power unit demonstrator integration,Integration,Systems lead,52,57,53,57,2027-03-31,0,0,True,,0,0.0,0,38760
+INT04,First integrated bench run,Integration,Test lead,57,60,57,60,2027-04-05,0,0,True,Dyno A,0,0.0,0,25500
+INT05,Integrated endurance validation,Integration,Validation lead,60,68,60,68,2027-04-15,0,0,True,Dyno A,0,0.0,0,66300
+INT06,Thermal and energy validation,Integration,Validation lead,68,74,68,74,2027-04-23,0,0,True,Dyno A,8,0.0,0,48960
+CTL07,Calibration refinement,Controls,Controls lead,60,65,60,65,2027-04-12,0,12,False,HIL rig,0,0.0,0,22440
+INT07,Teardown and nonconformance review,Integration,Quality lead,74,77,74,77,2027-04-28,0,0,True,,0,0.0,0,18360
+INT08,Corrective action closure,Integration,Systems lead,77,81,77,80,2027-05-03,-1,0,True,,0,0.0,0,26520
+INT09,Regression validation,Integration,Validation lead,81,85,80,84,2027-05-07,-1,0,True,Dyno A,0,0.0,0,35700
+PM03,Cost to complete reconciliation,Programme,Finance lead,52,55,53,56,2027-03-30,1,28,False,,0,0.0,0,10200
+PM04,Configuration and evidence dossier,Programme,Configuration lead,85,88,84,86,2027-05-11,-2,0,True,,0,0.0,0,14280
+PM05,Cross site interface acceptance,Programme,Systems lead,88,90,86,88,2027-05-13,-2,0,True,,0,0.0,0,10200
+G03,Demonstrator release decision,Programme,Programme manager,90,90,88,88,2027-05-13,-2,0,True,,0,0.0,0,0

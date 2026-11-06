@@ -1,0 +1,4901 @@
+{
+  "project": "Power Unit Programme Control",
+  "data_classification": "Fictional independent case study",
+  "config": {
+    "start_date": "2027-01-11",
+    "status_day": 30,
+    "target_day": 95,
+    "holidays": [],
+    "calendar": "Monday to Friday; no holiday exclusions in the fictional demo",
+    "finish_convention": "Start-of-day boundaries; intervals are [start, finish). A finish date is the next available workday boundary.",
+    "seed": 2314893,
+    "simulation_runs": 5000,
+    "duration_low": 0.9,
+    "duration_high": 1.2,
+    "supplier_event_days": [
+      3,
+      9
+    ],
+    "retest_days": [
+      3,
+      7
+    ],
+    "delay_cost_per_day": 1800,
+    "cases": [
+      {
+        "id": "current",
+        "name": "Current forecast",
+        "description": "Keep current supplier dates and test plan.",
+        "task_changes": {},
+        "incremental_cost": 0,
+        "supplier_event_probability": 0.25,
+        "retest_probability": 0.2,
+        "approval": "Reference forecast"
+      },
+      {
+        "id": "expedite",
+        "name": "Expedite supply",
+        "description": "Reserve supplier finishing capacity and expedited delivery. Retain the same acceptance scope.",
+        "task_changes": {
+          "ERS03": {
+            "remaining_days": 7
+          },
+          "ERS04": {
+            "remaining_days": 4
+          }
+        },
+        "incremental_cost": 18000,
+        "supplier_event_probability": 0.1,
+        "retest_probability": 0.2,
+        "approval": "Proposed, not approved"
+      },
+      {
+        "id": "recovery",
+        "name": "Coordinated recovery",
+        "description": "Expedite supply plus a dedicated integration engineer and parallel evidence preparation. Test durations and acceptance scope stay unchanged.",
+        "task_changes": {
+          "ERS03": {
+            "remaining_days": 7
+          },
+          "ERS04": {
+            "remaining_days": 4
+          },
+          "INT03": {
+            "remaining_days": 4
+          },
+          "INT08": {
+            "remaining_days": 3
+          },
+          "PM04": {
+            "remaining_days": 2
+          }
+        },
+        "incremental_cost": 31000,
+        "supplier_event_probability": 0.1,
+        "retest_probability": 0.15,
+        "approval": "Proposed, not approved"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "PM01",
+      "name": "Scope and acceptance criteria",
+      "stream": "Programme",
+      "owner": "Programme manager",
+      "preds": [],
+      "baseline_days": 3,
+      "budget": 12000,
+      "resource": "",
+      "order": 0,
+      "progress": 1.0,
+      "remaining_days": 0,
+      "actual_start": 0,
+      "actual_finish": 3,
+      "actual_cost": 12360,
+      "etc": 0,
+      "ready_day": 0
+    },
+    {
+      "id": "PM02",
+      "name": "Interface and responsibility agreement",
+      "stream": "Programme",
+      "owner": "Systems lead",
+      "preds": [
+        "PM01"
+      ],
+      "baseline_days": 4,
+      "budget": 18000,
+      "resource": "",
+      "order": 1,
+      "progress": 1.0,
+      "remaining_days": 0,
+      "actual_start": 3,
+      "actual_finish": 7,
+      "actual_cost": 18540,
+      "etc": 0,
+      "ready_day": 0
+    },
+    {
+      "id": "G01",
+      "name": "Requirements review",
+      "stream": "Programme",
+      "owner": "Technical lead",
+      "preds": [
+        "PM02"
+      ],
+      "baseline_days": 0,
+      "budget": 0,
+      "resource": "",
+      "order": 2,
+      "progress": 1.0,
+      "remaining_days": 0,
+      "actual_start": 7,
+      "actual_finish": 7,
+      "actual_cost": 0,
+      "etc": 0,
+      "ready_day": 0
+    },
+    {
+      "id": "ICE01",
+      "name": "Combustion assembly requirements",
+      "stream": "ICE",
+      "owner": "ICE lead",
+      "preds": [
+        "G01"
+      ],
+      "baseline_days": 5,
+      "budget": 22000,
+      "resource": "",
+      "order": 3,
+      "progress": 1.0,
+      "remaining_days": 0,
+      "actual_start": 7,
+      "actual_finish": 12,
+      "actual_cost": 22660,
+      "etc": 0,
+      "ready_day": 0
+    },
+    {
+      "id": "ERS01",
+      "name": "Electrical system requirements",
+      "stream": "ERS",
+      "owner": "ERS lead",
+      "preds": [
+        "G01"
+      ],
+      "baseline_days": 5,
+      "budget": 25000,
+      "resource": "",
+      "order": 4,
+      "progress": 1.0,
+      "remaining_days": 0,
+      "actual_start": 7,
+      "actual_finish": 12,
+      "actual_cost": 25750,
+      "etc": 0,
+      "ready_day": 0
+    },
+    {
+      "id": "CTL01",
+      "name": "Controls requirements",
+      "stream": "Controls",
+      "owner": "Controls lead",
+      "preds": [
+        "G01"
+      ],
+      "baseline_days": 4,
+      "budget": 18000,
+      "resource": "",
+      "order": 5,
+      "progress": 1.0,
+      "remaining_days": 0,
+      "actual_start": 7,
+      "actual_finish": 11,
+      "actual_cost": 18540,
+      "etc": 0,
+      "ready_day": 0
+    },
+    {
+      "id": "INT01",
+      "name": "Test article and bench plan",
+      "stream": "Integration",
+      "owner": "Test lead",
+      "preds": [
+        "G01"
+      ],
+      "baseline_days": 5,
+      "budget": 20000,
+      "resource": "",
+      "order": 6,
+      "progress": 1.0,
+      "remaining_days": 0,
+      "actual_start": 7,
+      "actual_finish": 12,
+      "actual_cost": 20600,
+      "etc": 0,
+      "ready_day": 0
+    },
+    {
+      "id": "ICE02",
+      "name": "Detail design and supplier release",
+      "stream": "ICE",
+      "owner": "ICE lead",
+      "preds": [
+        "ICE01"
+      ],
+      "baseline_days": 7,
+      "budget": 38000,
+      "resource": "",
+      "order": 7,
+      "progress": 1.0,
+      "remaining_days": 0,
+      "actual_start": 12,
+      "actual_finish": 19,
+      "actual_cost": 39140,
+      "etc": 0,
+      "ready_day": 0
+    },
+    {
+      "id": "ERS02",
+      "name": "Electrical design and supplier release",
+      "stream": "ERS",
+      "owner": "ERS lead",
+      "preds": [
+        "ERS01"
+      ],
+      "baseline_days": 7,
+      "budget": 42000,
+      "resource": "",
+      "order": 8,
+      "progress": 1.0,
+      "remaining_days": 0,
+      "actual_start": 12,
+      "actual_finish": 19,
+      "actual_cost": 43260,
+      "etc": 0,
+      "ready_day": 0
+    },
+    {
+      "id": "CTL02",
+      "name": "Software architecture",
+      "stream": "Controls",
+      "owner": "Controls lead",
+      "preds": [
+        "CTL01",
+        "PM02"
+      ],
+      "baseline_days": 6,
+      "budget": 28000,
+      "resource": "",
+      "order": 9,
+      "progress": 1.0,
+      "remaining_days": 0,
+      "actual_start": 11,
+      "actual_finish": 17,
+      "actual_cost": 28840,
+      "etc": 0,
+      "ready_day": 0
+    },
+    {
+      "id": "INT02",
+      "name": "Bench instrumentation and fixtures",
+      "stream": "Integration",
+      "owner": "Test lead",
+      "preds": [
+        "INT01"
+      ],
+      "baseline_days": 8,
+      "budget": 32000,
+      "resource": "",
+      "order": 10,
+      "progress": 1.0,
+      "remaining_days": 0,
+      "actual_start": 12,
+      "actual_finish": 20,
+      "actual_cost": 32960,
+      "etc": 0,
+      "ready_day": 0
+    },
+    {
+      "id": "ICE03",
+      "name": "Critical castings procurement",
+      "stream": "ICE",
+      "owner": "Supply chain lead",
+      "preds": [
+        "ICE02"
+      ],
+      "baseline_days": 12,
+      "budget": 85000,
+      "resource": "",
+      "order": 11,
+      "progress": 0.917,
+      "remaining_days": 1,
+      "actual_start": 19,
+      "actual_finish": null,
+      "actual_cost": 84181,
+      "etc": 7478,
+      "ready_day": 0
+    },
+    {
+      "id": "ICE04",
+      "name": "Rotating assembly procurement",
+      "stream": "ICE",
+      "owner": "Supply chain lead",
+      "preds": [
+        "ICE02"
+      ],
+      "baseline_days": 10,
+      "budget": 65000,
+      "resource": "",
+      "order": 12,
+      "progress": 0.846,
+      "remaining_days": 2,
+      "actual_start": 19,
+      "actual_finish": null,
+      "actual_cost": 59389,
+      "etc": 10611,
+      "ready_day": 0
+    },
+    {
+      "id": "ERS03",
+      "name": "Energy storage demonstrator delivery",
+      "stream": "ERS",
+      "owner": "Supply chain lead",
+      "preds": [
+        "ERS02"
+      ],
+      "baseline_days": 14,
+      "budget": 95000,
+      "resource": "",
+      "order": 13,
+      "progress": 0.423,
+      "remaining_days": 15,
+      "actual_start": 19,
+      "actual_finish": null,
+      "actual_cost": 43400,
+      "etc": 58104,
+      "ready_day": 0
+    },
+    {
+      "id": "ERS04",
+      "name": "Motor generator demonstrator delivery",
+      "stream": "ERS",
+      "owner": "Supply chain lead",
+      "preds": [
+        "ERS02"
+      ],
+      "baseline_days": 12,
+      "budget": 80000,
+      "resource": "",
+      "order": 14,
+      "progress": 0.55,
+      "remaining_days": 9,
+      "actual_start": 19,
+      "actual_finish": null,
+      "actual_cost": 47520,
+      "etc": 38160,
+      "ready_day": 0
+    },
+    {
+      "id": "CTL03",
+      "name": "Control software implementation",
+      "stream": "Controls",
+      "owner": "Controls lead",
+      "preds": [
+        "CTL02"
+      ],
+      "baseline_days": 10,
+      "budget": 44000,
+      "resource": "",
+      "order": 15,
+      "progress": 1.0,
+      "remaining_days": 0,
+      "actual_start": 17,
+      "actual_finish": 29,
+      "actual_cost": 45320,
+      "etc": 0,
+      "ready_day": 0
+    },
+    {
+      "id": "CTL04",
+      "name": "Hardware in loop test preparation",
+      "stream": "Controls",
+      "owner": "Validation lead",
+      "preds": [
+        "CTL02"
+      ],
+      "baseline_days": 7,
+      "budget": 25000,
+      "resource": "",
+      "order": 16,
+      "progress": 1.0,
+      "remaining_days": 0,
+      "actual_start": 17,
+      "actual_finish": 24,
+      "actual_cost": 25750,
+      "etc": 0,
+      "ready_day": 0
+    },
+    {
+      "id": "ICE05",
+      "name": "Incoming inspection",
+      "stream": "ICE",
+      "owner": "Quality lead",
+      "preds": [
+        "ICE03",
+        "ICE04"
+      ],
+      "baseline_days": 3,
+      "budget": 12000,
+      "resource": "",
+      "order": 17,
+      "progress": 0.0,
+      "remaining_days": 3,
+      "actual_start": null,
+      "actual_finish": null,
+      "actual_cost": 0,
+      "etc": 12240,
+      "ready_day": 0
+    },
+    {
+      "id": "ERS05",
+      "name": "Electrical incoming inspection",
+      "stream": "ERS",
+      "owner": "Quality lead",
+      "preds": [
+        "ERS03",
+        "ERS04"
+      ],
+      "baseline_days": 3,
+      "budget": 14000,
+      "resource": "",
+      "order": 18,
+      "progress": 0.0,
+      "remaining_days": 3,
+      "actual_start": null,
+      "actual_finish": null,
+      "actual_cost": 0,
+      "etc": 14280,
+      "ready_day": 0
+    },
+    {
+      "id": "CTL05",
+      "name": "Hardware in loop validation",
+      "stream": "Controls",
+      "owner": "Validation lead",
+      "preds": [
+        "CTL03",
+        "CTL04"
+      ],
+      "baseline_days": 6,
+      "budget": 30000,
+      "resource": "HIL rig",
+      "order": 19,
+      "progress": 0.167,
+      "remaining_days": 5,
+      "actual_start": 29,
+      "actual_finish": null,
+      "actual_cost": 5411,
+      "etc": 26489,
+      "ready_day": 0
+    },
+    {
+      "id": "ICE06",
+      "name": "ICE test assembly",
+      "stream": "ICE",
+      "owner": "Build lead",
+      "preds": [
+        "ICE05"
+      ],
+      "baseline_days": 5,
+      "budget": 35000,
+      "resource": "",
+      "order": 20,
+      "progress": 0.0,
+      "remaining_days": 5,
+      "actual_start": null,
+      "actual_finish": null,
+      "actual_cost": 0,
+      "etc": 35700,
+      "ready_day": 0
+    },
+    {
+      "id": "ERS06",
+      "name": "Electrical subsystem assembly",
+      "stream": "ERS",
+      "owner": "Build lead",
+      "preds": [
+        "ERS05"
+      ],
+      "baseline_days": 4,
+      "budget": 28000,
+      "resource": "",
+      "order": 21,
+      "progress": 0.0,
+      "remaining_days": 4,
+      "actual_start": null,
+      "actual_finish": null,
+      "actual_cost": 0,
+      "etc": 28560,
+      "ready_day": 0
+    },
+    {
+      "id": "ICE07",
+      "name": "ICE subsystem test",
+      "stream": "ICE",
+      "owner": "Test lead",
+      "preds": [
+        "ICE06",
+        "INT02"
+      ],
+      "baseline_days": 7,
+      "budget": 50000,
+      "resource": "Dyno A",
+      "order": 22,
+      "progress": 0.0,
+      "remaining_days": 7,
+      "actual_start": null,
+      "actual_finish": null,
+      "actual_cost": 0,
+      "etc": 51000,
+      "ready_day": 0
+    },
+    {
+      "id": "ERS07",
+      "name": "Electrical subsystem test",
+      "stream": "ERS",
+      "owner": "Test lead",
+      "preds": [
+        "ERS06",
+        "INT02"
+      ],
+      "baseline_days": 6,
+      "budget": 42000,
+      "resource": "Dyno A",
+      "order": 23,
+      "progress": 0.0,
+      "remaining_days": 6,
+      "actual_start": null,
+      "actual_finish": null,
+      "actual_cost": 0,
+      "etc": 42840,
+      "ready_day": 0
+    },
+    {
+      "id": "CTL06",
+      "name": "Calibration package review",
+      "stream": "Controls",
+      "owner": "Controls lead",
+      "preds": [
+        "CTL05"
+      ],
+      "baseline_days": 3,
+      "budget": 14000,
+      "resource": "",
+      "order": 24,
+      "progress": 0.0,
+      "remaining_days": 3,
+      "actual_start": null,
+      "actual_finish": null,
+      "actual_cost": 0,
+      "etc": 14280,
+      "ready_day": 0
+    },
+    {
+      "id": "G02",
+      "name": "Subsystem evidence review",
+      "stream": "Programme",
+      "owner": "Technical lead",
+      "preds": [
+        "ICE07",
+        "ERS07",
+        "CTL06"
+      ],
+      "baseline_days": 0,
+      "budget": 0,
+      "resource": "",
+      "order": 25,
+      "progress": 0.0,
+      "remaining_days": 0,
+      "actual_start": null,
+      "actual_finish": null,
+      "actual_cost": 0,
+      "etc": 0,
+      "ready_day": 0
+    },
+    {
+      "id": "INT03",
+      "name": "Power unit demonstrator integration",
+      "stream": "Integration",
+      "owner": "Systems lead",
+      "preds": [
+        "G02"
+      ],
+      "baseline_days": 5,
+      "budget": 38000,
+      "resource": "",
+      "order": 26,
+      "progress": 0.0,
+      "remaining_days": 5,
+      "actual_start": null,
+      "actual_finish": null,
+      "actual_cost": 0,
+      "etc": 38760,
+      "ready_day": 0
+    },
+    {
+      "id": "INT04",
+      "name": "First integrated bench run",
+      "stream": "Integration",
+      "owner": "Test lead",
+      "preds": [
+        "INT03"
+      ],
+      "baseline_days": 3,
+      "budget": 25000,
+      "resource": "Dyno A",
+      "order": 27,
+      "progress": 0.0,
+      "remaining_days": 3,
+      "actual_start": null,
+      "actual_finish": null,
+      "actual_cost": 0,
+      "etc": 25500,
+      "ready_day": 0
+    },
+    {
+      "id": "INT05",
+      "name": "Integrated endurance validation",
+      "stream": "Integration",
+      "owner": "Validation lead",
+      "preds": [
+        "INT04"
+      ],
+      "baseline_days": 8,
+      "budget": 65000,
+      "resource": "Dyno A",
+      "order": 28,
+      "progress": 0.0,
+      "remaining_days": 8,
+      "actual_start": null,
+      "actual_finish": null,
+      "actual_cost": 0,
+      "etc": 66300,
+      "ready_day": 0
+    },
+    {
+      "id": "INT06",
+      "name": "Thermal and energy validation",
+      "stream": "Integration",
+      "owner": "Validation lead",
+      "preds": [
+        "INT04"
+      ],
+      "baseline_days": 6,
+      "budget": 48000,
+      "resource": "Dyno A",
+      "order": 29,
+      "progress": 0.0,
+      "remaining_days": 6,
+      "actual_start": null,
+      "actual_finish": null,
+      "actual_cost": 0,
+      "etc": 48960,
+      "ready_day": 0
+    },
+    {
+      "id": "CTL07",
+      "name": "Calibration refinement",
+      "stream": "Controls",
+      "owner": "Controls lead",
+      "preds": [
+        "INT04"
+      ],
+      "baseline_days": 5,
+      "budget": 22000,
+      "resource": "HIL rig",
+      "order": 30,
+      "progress": 0.0,
+      "remaining_days": 5,
+      "actual_start": null,
+      "actual_finish": null,
+      "actual_cost": 0,
+      "etc": 22440,
+      "ready_day": 0
+    },
+    {
+      "id": "INT07",
+      "name": "Teardown and nonconformance review",
+      "stream": "Integration",
+      "owner": "Quality lead",
+      "preds": [
+        "INT05",
+        "INT06"
+      ],
+      "baseline_days": 3,
+      "budget": 18000,
+      "resource": "",
+      "order": 31,
+      "progress": 0.0,
+      "remaining_days": 3,
+      "actual_start": null,
+      "actual_finish": null,
+      "actual_cost": 0,
+      "etc": 18360,
+      "ready_day": 0
+    },
+    {
+      "id": "INT08",
+      "name": "Corrective action closure",
+      "stream": "Integration",
+      "owner": "Systems lead",
+      "preds": [
+        "INT07",
+        "CTL07"
+      ],
+      "baseline_days": 4,
+      "budget": 26000,
+      "resource": "",
+      "order": 32,
+      "progress": 0.0,
+      "remaining_days": 4,
+      "actual_start": null,
+      "actual_finish": null,
+      "actual_cost": 0,
+      "etc": 26520,
+      "ready_day": 0
+    },
+    {
+      "id": "INT09",
+      "name": "Regression validation",
+      "stream": "Integration",
+      "owner": "Validation lead",
+      "preds": [
+        "INT08"
+      ],
+      "baseline_days": 4,
+      "budget": 35000,
+      "resource": "Dyno A",
+      "order": 33,
+      "progress": 0.0,
+      "remaining_days": 4,
+      "actual_start": null,
+      "actual_finish": null,
+      "actual_cost": 0,
+      "etc": 35700,
+      "ready_day": 0
+    },
+    {
+      "id": "PM03",
+      "name": "Cost to complete reconciliation",
+      "stream": "Programme",
+      "owner": "Finance lead",
+      "preds": [
+        "G02"
+      ],
+      "baseline_days": 3,
+      "budget": 10000,
+      "resource": "",
+      "order": 34,
+      "progress": 0.0,
+      "remaining_days": 3,
+      "actual_start": null,
+      "actual_finish": null,
+      "actual_cost": 0,
+      "etc": 10200,
+      "ready_day": 0
+    },
+    {
+      "id": "PM04",
+      "name": "Configuration and evidence dossier",
+      "stream": "Programme",
+      "owner": "Configuration lead",
+      "preds": [
+        "INT09",
+        "PM03"
+      ],
+      "baseline_days": 3,
+      "budget": 14000,
+      "resource": "",
+      "order": 35,
+      "progress": 0.0,
+      "remaining_days": 3,
+      "actual_start": null,
+      "actual_finish": null,
+      "actual_cost": 0,
+      "etc": 14280,
+      "ready_day": 0
+    },
+    {
+      "id": "PM05",
+      "name": "Cross site interface acceptance",
+      "stream": "Programme",
+      "owner": "Systems lead",
+      "preds": [
+        "PM04"
+      ],
+      "baseline_days": 2,
+      "budget": 10000,
+      "resource": "",
+      "order": 36,
+      "progress": 0.0,
+      "remaining_days": 2,
+      "actual_start": null,
+      "actual_finish": null,
+      "actual_cost": 0,
+      "etc": 10200,
+      "ready_day": 0
+    },
+    {
+      "id": "G03",
+      "name": "Demonstrator release decision",
+      "stream": "Programme",
+      "owner": "Programme manager",
+      "preds": [
+        "PM05"
+      ],
+      "baseline_days": 0,
+      "budget": 0,
+      "resource": "",
+      "order": 37,
+      "progress": 0.0,
+      "remaining_days": 0,
+      "actual_start": null,
+      "actual_finish": null,
+      "actual_cost": 0,
+      "etc": 0,
+      "ready_day": 0
+    }
+  ],
+  "baseline": {
+    "tasks": {
+      "PM01": {
+        "start": 0,
+        "finish": 3,
+        "duration": 3,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [],
+        "done": false,
+        "late_start": 0,
+        "float": 0,
+        "critical": true
+      },
+      "PM02": {
+        "start": 3,
+        "finish": 7,
+        "duration": 4,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "PM01"
+        ],
+        "done": false,
+        "late_start": 3,
+        "float": 0,
+        "critical": true
+      },
+      "G01": {
+        "start": 7,
+        "finish": 7,
+        "duration": 0,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "PM02"
+        ],
+        "done": false,
+        "late_start": 7,
+        "float": 0,
+        "critical": true
+      },
+      "ICE01": {
+        "start": 7,
+        "finish": 12,
+        "duration": 5,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "G01"
+        ],
+        "done": false,
+        "late_start": 7,
+        "float": 0,
+        "critical": true
+      },
+      "ERS01": {
+        "start": 7,
+        "finish": 12,
+        "duration": 5,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "G01"
+        ],
+        "done": false,
+        "late_start": 13,
+        "float": 6,
+        "critical": false
+      },
+      "CTL01": {
+        "start": 7,
+        "finish": 11,
+        "duration": 4,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "G01"
+        ],
+        "done": false,
+        "late_start": 23,
+        "float": 16,
+        "critical": false
+      },
+      "INT01": {
+        "start": 7,
+        "finish": 12,
+        "duration": 5,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "G01"
+        ],
+        "done": false,
+        "late_start": 26,
+        "float": 19,
+        "critical": false
+      },
+      "ICE02": {
+        "start": 12,
+        "finish": 19,
+        "duration": 7,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "ICE01"
+        ],
+        "done": false,
+        "late_start": 12,
+        "float": 0,
+        "critical": true
+      },
+      "ERS02": {
+        "start": 12,
+        "finish": 19,
+        "duration": 7,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "ERS01"
+        ],
+        "done": false,
+        "late_start": 18,
+        "float": 6,
+        "critical": false
+      },
+      "CTL02": {
+        "start": 11,
+        "finish": 17,
+        "duration": 6,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "CTL01",
+          "PM02"
+        ],
+        "done": false,
+        "late_start": 27,
+        "float": 16,
+        "critical": false
+      },
+      "INT02": {
+        "start": 12,
+        "finish": 20,
+        "duration": 8,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "INT01"
+        ],
+        "done": false,
+        "late_start": 31,
+        "float": 19,
+        "critical": false
+      },
+      "ICE03": {
+        "start": 19,
+        "finish": 31,
+        "duration": 12,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "ICE02"
+        ],
+        "done": false,
+        "late_start": 19,
+        "float": 0,
+        "critical": true
+      },
+      "ICE04": {
+        "start": 19,
+        "finish": 29,
+        "duration": 10,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "ICE02"
+        ],
+        "done": false,
+        "late_start": 21,
+        "float": 2,
+        "critical": false
+      },
+      "ERS03": {
+        "start": 19,
+        "finish": 33,
+        "duration": 14,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "ERS02"
+        ],
+        "done": false,
+        "late_start": 25,
+        "float": 6,
+        "critical": false
+      },
+      "ERS04": {
+        "start": 19,
+        "finish": 31,
+        "duration": 12,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "ERS02"
+        ],
+        "done": false,
+        "late_start": 27,
+        "float": 8,
+        "critical": false
+      },
+      "CTL03": {
+        "start": 17,
+        "finish": 27,
+        "duration": 10,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "CTL02"
+        ],
+        "done": false,
+        "late_start": 33,
+        "float": 16,
+        "critical": false
+      },
+      "CTL04": {
+        "start": 17,
+        "finish": 24,
+        "duration": 7,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "CTL02"
+        ],
+        "done": false,
+        "late_start": 36,
+        "float": 19,
+        "critical": false
+      },
+      "ICE05": {
+        "start": 31,
+        "finish": 34,
+        "duration": 3,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "ICE03",
+          "ICE04"
+        ],
+        "done": false,
+        "late_start": 31,
+        "float": 0,
+        "critical": true
+      },
+      "ERS05": {
+        "start": 33,
+        "finish": 36,
+        "duration": 3,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "ERS03",
+          "ERS04"
+        ],
+        "done": false,
+        "late_start": 39,
+        "float": 6,
+        "critical": false
+      },
+      "CTL05": {
+        "start": 27,
+        "finish": 33,
+        "duration": 6,
+        "resource_wait": 0,
+        "resource": "HIL rig",
+        "preds": [
+          "CTL03",
+          "CTL04"
+        ],
+        "done": false,
+        "late_start": 43,
+        "float": 16,
+        "critical": false
+      },
+      "ICE06": {
+        "start": 34,
+        "finish": 39,
+        "duration": 5,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "ICE05"
+        ],
+        "done": false,
+        "late_start": 34,
+        "float": 0,
+        "critical": true
+      },
+      "ERS06": {
+        "start": 36,
+        "finish": 40,
+        "duration": 4,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "ERS05"
+        ],
+        "done": false,
+        "late_start": 42,
+        "float": 6,
+        "critical": false
+      },
+      "ICE07": {
+        "start": 39,
+        "finish": 46,
+        "duration": 7,
+        "resource_wait": 0,
+        "resource": "Dyno A",
+        "preds": [
+          "ICE06",
+          "INT02"
+        ],
+        "done": false,
+        "late_start": 39,
+        "float": 0,
+        "critical": true
+      },
+      "ERS07": {
+        "start": 46,
+        "finish": 52,
+        "duration": 6,
+        "resource_wait": 6,
+        "resource": "Dyno A",
+        "preds": [
+          "ERS06",
+          "INT02",
+          "ICE07"
+        ],
+        "done": false,
+        "late_start": 46,
+        "float": 0,
+        "critical": true
+      },
+      "CTL06": {
+        "start": 33,
+        "finish": 36,
+        "duration": 3,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "CTL05"
+        ],
+        "done": false,
+        "late_start": 49,
+        "float": 16,
+        "critical": false
+      },
+      "G02": {
+        "start": 52,
+        "finish": 52,
+        "duration": 0,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "ICE07",
+          "ERS07",
+          "CTL06"
+        ],
+        "done": false,
+        "late_start": 52,
+        "float": 0,
+        "critical": true
+      },
+      "INT03": {
+        "start": 52,
+        "finish": 57,
+        "duration": 5,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "G02"
+        ],
+        "done": false,
+        "late_start": 52,
+        "float": 0,
+        "critical": true
+      },
+      "INT04": {
+        "start": 57,
+        "finish": 60,
+        "duration": 3,
+        "resource_wait": 0,
+        "resource": "Dyno A",
+        "preds": [
+          "INT03",
+          "ERS07"
+        ],
+        "done": false,
+        "late_start": 57,
+        "float": 0,
+        "critical": true
+      },
+      "INT05": {
+        "start": 60,
+        "finish": 68,
+        "duration": 8,
+        "resource_wait": 0,
+        "resource": "Dyno A",
+        "preds": [
+          "INT04"
+        ],
+        "done": false,
+        "late_start": 60,
+        "float": 0,
+        "critical": true
+      },
+      "INT06": {
+        "start": 68,
+        "finish": 74,
+        "duration": 6,
+        "resource_wait": 8,
+        "resource": "Dyno A",
+        "preds": [
+          "INT04",
+          "INT05"
+        ],
+        "done": false,
+        "late_start": 68,
+        "float": 0,
+        "critical": true
+      },
+      "CTL07": {
+        "start": 60,
+        "finish": 65,
+        "duration": 5,
+        "resource_wait": 0,
+        "resource": "HIL rig",
+        "preds": [
+          "INT04",
+          "CTL05"
+        ],
+        "done": false,
+        "late_start": 72,
+        "float": 12,
+        "critical": false
+      },
+      "INT07": {
+        "start": 74,
+        "finish": 77,
+        "duration": 3,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "INT05",
+          "INT06"
+        ],
+        "done": false,
+        "late_start": 74,
+        "float": 0,
+        "critical": true
+      },
+      "INT08": {
+        "start": 77,
+        "finish": 81,
+        "duration": 4,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "INT07",
+          "CTL07"
+        ],
+        "done": false,
+        "late_start": 77,
+        "float": 0,
+        "critical": true
+      },
+      "INT09": {
+        "start": 81,
+        "finish": 85,
+        "duration": 4,
+        "resource_wait": 0,
+        "resource": "Dyno A",
+        "preds": [
+          "INT08",
+          "INT06"
+        ],
+        "done": false,
+        "late_start": 81,
+        "float": 0,
+        "critical": true
+      },
+      "PM03": {
+        "start": 52,
+        "finish": 55,
+        "duration": 3,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "G02"
+        ],
+        "done": false,
+        "late_start": 82,
+        "float": 30,
+        "critical": false
+      },
+      "PM04": {
+        "start": 85,
+        "finish": 88,
+        "duration": 3,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "INT09",
+          "PM03"
+        ],
+        "done": false,
+        "late_start": 85,
+        "float": 0,
+        "critical": true
+      },
+      "PM05": {
+        "start": 88,
+        "finish": 90,
+        "duration": 2,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "PM04"
+        ],
+        "done": false,
+        "late_start": 88,
+        "float": 0,
+        "critical": true
+      },
+      "G03": {
+        "start": 90,
+        "finish": 90,
+        "duration": 0,
+        "resource_wait": 0,
+        "resource": "",
+        "preds": [
+          "PM05"
+        ],
+        "done": false,
+        "late_start": 90,
+        "float": 0,
+        "critical": true
+      }
+    },
+    "finish": 90,
+    "critical_ids": [
+      "PM01",
+      "PM02",
+      "G01",
+      "ICE01",
+      "ICE02",
+      "ICE03",
+      "ICE05",
+      "ICE06",
+      "ICE07",
+      "ERS07",
+      "G02",
+      "INT03",
+      "INT04",
+      "INT05",
+      "INT06",
+      "INT07",
+      "INT08",
+      "INT09",
+      "PM04",
+      "PM05",
+      "G03"
+    ]
+  },
+  "evm": {
+    "rows": [
+      {
+        "id": "PM01",
+        "stream": "Programme",
+        "budget": 12000,
+        "pv": 12000,
+        "ev": 12000.0,
+        "ac": 12360,
+        "etc": 0
+      },
+      {
+        "id": "PM02",
+        "stream": "Programme",
+        "budget": 18000,
+        "pv": 18000,
+        "ev": 18000.0,
+        "ac": 18540,
+        "etc": 0
+      },
+      {
+        "id": "G01",
+        "stream": "Programme",
+        "budget": 0,
+        "pv": 0.0,
+        "ev": 0.0,
+        "ac": 0,
+        "etc": 0
+      },
+      {
+        "id": "ICE01",
+        "stream": "ICE",
+        "budget": 22000,
+        "pv": 22000,
+        "ev": 22000.0,
+        "ac": 22660,
+        "etc": 0
+      },
+      {
+        "id": "ERS01",
+        "stream": "ERS",
+        "budget": 25000,
+        "pv": 25000,
+        "ev": 25000.0,
+        "ac": 25750,
+        "etc": 0
+      },
+      {
+        "id": "CTL01",
+        "stream": "Controls",
+        "budget": 18000,
+        "pv": 18000,
+        "ev": 18000.0,
+        "ac": 18540,
+        "etc": 0
+      },
+      {
+        "id": "INT01",
+        "stream": "Integration",
+        "budget": 20000,
+        "pv": 20000,
+        "ev": 20000.0,
+        "ac": 20600,
+        "etc": 0
+      },
+      {
+        "id": "ICE02",
+        "stream": "ICE",
+        "budget": 38000,
+        "pv": 38000,
+        "ev": 38000.0,
+        "ac": 39140,
+        "etc": 0
+      },
+      {
+        "id": "ERS02",
+        "stream": "ERS",
+        "budget": 42000,
+        "pv": 42000,
+        "ev": 42000.0,
+        "ac": 43260,
+        "etc": 0
+      },
+      {
+        "id": "CTL02",
+        "stream": "Controls",
+        "budget": 28000,
+        "pv": 28000,
+        "ev": 28000.0,
+        "ac": 28840,
+        "etc": 0
+      },
+      {
+        "id": "INT02",
+        "stream": "Integration",
+        "budget": 32000,
+        "pv": 32000,
+        "ev": 32000.0,
+        "ac": 32960,
+        "etc": 0
+      },
+      {
+        "id": "ICE03",
+        "stream": "ICE",
+        "budget": 85000,
+        "pv": 77916.66666666666,
+        "ev": 77945.0,
+        "ac": 84181,
+        "etc": 7478
+      },
+      {
+        "id": "ICE04",
+        "stream": "ICE",
+        "budget": 65000,
+        "pv": 65000,
+        "ev": 54990.0,
+        "ac": 59389,
+        "etc": 10611
+      },
+      {
+        "id": "ERS03",
+        "stream": "ERS",
+        "budget": 95000,
+        "pv": 74642.85714285714,
+        "ev": 40185.0,
+        "ac": 43400,
+        "etc": 58104
+      },
+      {
+        "id": "ERS04",
+        "stream": "ERS",
+        "budget": 80000,
+        "pv": 73333.33333333333,
+        "ev": 44000.0,
+        "ac": 47520,
+        "etc": 38160
+      },
+      {
+        "id": "CTL03",
+        "stream": "Controls",
+        "budget": 44000,
+        "pv": 44000,
+        "ev": 44000.0,
+        "ac": 45320,
+        "etc": 0
+      },
+      {
+        "id": "CTL04",
+        "stream": "Controls",
+        "budget": 25000,
+        "pv": 25000,
+        "ev": 25000.0,
+        "ac": 25750,
+        "etc": 0
+      },
+      {
+        "id": "ICE05",
+        "stream": "ICE",
+        "budget": 12000,
+        "pv": 0,
+        "ev": 0.0,
+        "ac": 0,
+        "etc": 12240
+      },
+      {
+        "id": "ERS05",
+        "stream": "ERS",
+        "budget": 14000,
+        "pv": 0,
+        "ev": 0.0,
+        "ac": 0,
+        "etc": 14280
+      },
+      {
+        "id": "CTL05",
+        "stream": "Controls",
+        "budget": 30000,
+        "pv": 15000.0,
+        "ev": 5010.0,
+        "ac": 5411,
+        "etc": 26489
+      },
+      {
+        "id": "ICE06",
+        "stream": "ICE",
+        "budget": 35000,
+        "pv": 0,
+        "ev": 0.0,
+        "ac": 0,
+        "etc": 35700
+      },
+      {
+        "id": "ERS06",
+        "stream": "ERS",
+        "budget": 28000,
+        "pv": 0,
+        "ev": 0.0,
+        "ac": 0,
+        "etc": 28560
+      },
+      {
+        "id": "ICE07",
+        "stream": "ICE",
+        "budget": 50000,
+        "pv": 0,
+        "ev": 0.0,
+        "ac": 0,
+        "etc": 51000
+      },
+      {
+        "id": "ERS07",
+        "stream": "ERS",
+        "budget": 42000,
+        "pv": 0,
+        "ev": 0.0,
+        "ac": 0,
+        "etc": 42840
+      },
+      {
+        "id": "CTL06",
+        "stream": "Controls",
+        "budget": 14000,
+        "pv": 0,
+        "ev": 0.0,
+        "ac": 0,
+        "etc": 14280
+      },
+      {
+        "id": "G02",
+        "stream": "Programme",
+        "budget": 0,
+        "pv": 0.0,
+        "ev": 0.0,
+        "ac": 0,
+        "etc": 0
+      },
+      {
+        "id": "INT03",
+        "stream": "Integration",
+        "budget": 38000,
+        "pv": 0,
+        "ev": 0.0,
+        "ac": 0,
+        "etc": 38760
+      },
+      {
+        "id": "INT04",
+        "stream": "Integration",
+        "budget": 25000,
+        "pv": 0,
+        "ev": 0.0,
+        "ac": 0,
+        "etc": 25500
+      },
+      {
+        "id": "INT05",
+        "stream": "Integration",
+        "budget": 65000,
+        "pv": 0,
+        "ev": 0.0,
+        "ac": 0,
+        "etc": 66300
+      },
+      {
+        "id": "INT06",
+        "stream": "Integration",
+        "budget": 48000,
+        "pv": 0,
+        "ev": 0.0,
+        "ac": 0,
+        "etc": 48960
+      },
+      {
+        "id": "CTL07",
+        "stream": "Controls",
+        "budget": 22000,
+        "pv": 0,
+        "ev": 0.0,
+        "ac": 0,
+        "etc": 22440
+      },
+      {
+        "id": "INT07",
+        "stream": "Integration",
+        "budget": 18000,
+        "pv": 0,
+        "ev": 0.0,
+        "ac": 0,
+        "etc": 18360
+      },
+      {
+        "id": "INT08",
+        "stream": "Integration",
+        "budget": 26000,
+        "pv": 0,
+        "ev": 0.0,
+        "ac": 0,
+        "etc": 26520
+      },
+      {
+        "id": "INT09",
+        "stream": "Integration",
+        "budget": 35000,
+        "pv": 0,
+        "ev": 0.0,
+        "ac": 0,
+        "etc": 35700
+      },
+      {
+        "id": "PM03",
+        "stream": "Programme",
+        "budget": 10000,
+        "pv": 0,
+        "ev": 0.0,
+        "ac": 0,
+        "etc": 10200
+      },
+      {
+        "id": "PM04",
+        "stream": "Programme",
+        "budget": 14000,
+        "pv": 0,
+        "ev": 0.0,
+        "ac": 0,
+        "etc": 14280
+      },
+      {
+        "id": "PM05",
+        "stream": "Programme",
+        "budget": 10000,
+        "pv": 0,
+        "ev": 0.0,
+        "ac": 0,
+        "etc": 10200
+      },
+      {
+        "id": "G03",
+        "stream": "Programme",
+        "budget": 0,
+        "pv": 0.0,
+        "ev": 0.0,
+        "ac": 0,
+        "etc": 0
+      }
+    ],
+    "budget": 1185000,
+    "pv": 629892.86,
+    "ev": 546130.0,
+    "ac": 573621,
+    "etc": 656962,
+    "spi": 0.8670204644008824,
+    "cpi": 0.9520746276722784,
+    "bottom_up_eac": 1230583,
+    "cpi_eac": 1244650.3305073883
+  },
+  "cases": [
+    {
+      "id": "current",
+      "name": "Current forecast",
+      "description": "Keep current supplier dates and test plan.",
+      "approval": "Reference forecast",
+      "forecast": {
+        "tasks": {
+          "PM01": {
+            "start": 0,
+            "finish": 3,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [],
+            "done": true,
+            "late_start": 11,
+            "float": 11,
+            "critical": false
+          },
+          "PM02": {
+            "start": 3,
+            "finish": 7,
+            "duration": 4,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "PM01"
+            ],
+            "done": true,
+            "late_start": 14,
+            "float": 11,
+            "critical": false
+          },
+          "G01": {
+            "start": 7,
+            "finish": 7,
+            "duration": 0,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "PM02"
+            ],
+            "done": true,
+            "late_start": 18,
+            "float": 11,
+            "critical": false
+          },
+          "ICE01": {
+            "start": 7,
+            "finish": 12,
+            "duration": 5,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "G01"
+            ],
+            "done": true,
+            "late_start": 23,
+            "float": 16,
+            "critical": false
+          },
+          "ERS01": {
+            "start": 7,
+            "finish": 12,
+            "duration": 5,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "G01"
+            ],
+            "done": true,
+            "late_start": 18,
+            "float": 11,
+            "critical": false
+          },
+          "CTL01": {
+            "start": 7,
+            "finish": 11,
+            "duration": 4,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "G01"
+            ],
+            "done": true,
+            "late_start": 28,
+            "float": 21,
+            "critical": false
+          },
+          "INT01": {
+            "start": 7,
+            "finish": 12,
+            "duration": 5,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "G01"
+            ],
+            "done": true,
+            "late_start": 32,
+            "float": 25,
+            "critical": false
+          },
+          "ICE02": {
+            "start": 12,
+            "finish": 19,
+            "duration": 7,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ICE01"
+            ],
+            "done": true,
+            "late_start": 28,
+            "float": 16,
+            "critical": false
+          },
+          "ERS02": {
+            "start": 12,
+            "finish": 19,
+            "duration": 7,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ERS01"
+            ],
+            "done": true,
+            "late_start": 23,
+            "float": 11,
+            "critical": false
+          },
+          "CTL02": {
+            "start": 11,
+            "finish": 17,
+            "duration": 6,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "CTL01",
+              "PM02"
+            ],
+            "done": true,
+            "late_start": 32,
+            "float": 21,
+            "critical": false
+          },
+          "INT02": {
+            "start": 12,
+            "finish": 20,
+            "duration": 8,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "INT01"
+            ],
+            "done": true,
+            "late_start": 37,
+            "float": 25,
+            "critical": false
+          },
+          "ICE03": {
+            "start": 30,
+            "finish": 31,
+            "duration": 1,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ICE02"
+            ],
+            "done": false,
+            "late_start": 36,
+            "float": 6,
+            "critical": false
+          },
+          "ICE04": {
+            "start": 30,
+            "finish": 32,
+            "duration": 2,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ICE02"
+            ],
+            "done": false,
+            "late_start": 35,
+            "float": 5,
+            "critical": false
+          },
+          "ERS03": {
+            "start": 30,
+            "finish": 45,
+            "duration": 15,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ERS02"
+            ],
+            "done": false,
+            "late_start": 30,
+            "float": 0,
+            "critical": true
+          },
+          "ERS04": {
+            "start": 30,
+            "finish": 39,
+            "duration": 9,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ERS02"
+            ],
+            "done": false,
+            "late_start": 36,
+            "float": 6,
+            "critical": false
+          },
+          "CTL03": {
+            "start": 17,
+            "finish": 29,
+            "duration": 12,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "CTL02"
+            ],
+            "done": true,
+            "late_start": 38,
+            "float": 21,
+            "critical": false
+          },
+          "CTL04": {
+            "start": 17,
+            "finish": 24,
+            "duration": 7,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "CTL02"
+            ],
+            "done": true,
+            "late_start": 43,
+            "float": 26,
+            "critical": false
+          },
+          "ICE05": {
+            "start": 32,
+            "finish": 35,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ICE03",
+              "ICE04"
+            ],
+            "done": false,
+            "late_start": 37,
+            "float": 5,
+            "critical": false
+          },
+          "ERS05": {
+            "start": 45,
+            "finish": 48,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ERS03",
+              "ERS04"
+            ],
+            "done": false,
+            "late_start": 45,
+            "float": 0,
+            "critical": true
+          },
+          "CTL05": {
+            "start": 30,
+            "finish": 35,
+            "duration": 5,
+            "resource_wait": 0,
+            "resource": "HIL rig",
+            "preds": [
+              "CTL03",
+              "CTL04"
+            ],
+            "done": false,
+            "late_start": 50,
+            "float": 20,
+            "critical": false
+          },
+          "ICE06": {
+            "start": 35,
+            "finish": 40,
+            "duration": 5,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ICE05"
+            ],
+            "done": false,
+            "late_start": 40,
+            "float": 5,
+            "critical": false
+          },
+          "ERS06": {
+            "start": 48,
+            "finish": 52,
+            "duration": 4,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ERS05"
+            ],
+            "done": false,
+            "late_start": 48,
+            "float": 0,
+            "critical": true
+          },
+          "ICE07": {
+            "start": 40,
+            "finish": 47,
+            "duration": 7,
+            "resource_wait": 0,
+            "resource": "Dyno A",
+            "preds": [
+              "ICE06",
+              "INT02"
+            ],
+            "done": false,
+            "late_start": 45,
+            "float": 5,
+            "critical": false
+          },
+          "ERS07": {
+            "start": 52,
+            "finish": 58,
+            "duration": 6,
+            "resource_wait": 0,
+            "resource": "Dyno A",
+            "preds": [
+              "ERS06",
+              "INT02",
+              "ICE07"
+            ],
+            "done": false,
+            "late_start": 52,
+            "float": 0,
+            "critical": true
+          },
+          "CTL06": {
+            "start": 35,
+            "finish": 38,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "CTL05"
+            ],
+            "done": false,
+            "late_start": 55,
+            "float": 20,
+            "critical": false
+          },
+          "G02": {
+            "start": 58,
+            "finish": 58,
+            "duration": 0,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ICE07",
+              "ERS07",
+              "CTL06"
+            ],
+            "done": false,
+            "late_start": 58,
+            "float": 0,
+            "critical": true
+          },
+          "INT03": {
+            "start": 58,
+            "finish": 63,
+            "duration": 5,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "G02"
+            ],
+            "done": false,
+            "late_start": 58,
+            "float": 0,
+            "critical": true
+          },
+          "INT04": {
+            "start": 63,
+            "finish": 66,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "Dyno A",
+            "preds": [
+              "INT03",
+              "ERS07"
+            ],
+            "done": false,
+            "late_start": 63,
+            "float": 0,
+            "critical": true
+          },
+          "INT05": {
+            "start": 66,
+            "finish": 74,
+            "duration": 8,
+            "resource_wait": 0,
+            "resource": "Dyno A",
+            "preds": [
+              "INT04"
+            ],
+            "done": false,
+            "late_start": 66,
+            "float": 0,
+            "critical": true
+          },
+          "INT06": {
+            "start": 74,
+            "finish": 80,
+            "duration": 6,
+            "resource_wait": 8,
+            "resource": "Dyno A",
+            "preds": [
+              "INT04",
+              "INT05"
+            ],
+            "done": false,
+            "late_start": 74,
+            "float": 0,
+            "critical": true
+          },
+          "CTL07": {
+            "start": 66,
+            "finish": 71,
+            "duration": 5,
+            "resource_wait": 0,
+            "resource": "HIL rig",
+            "preds": [
+              "INT04",
+              "CTL05"
+            ],
+            "done": false,
+            "late_start": 78,
+            "float": 12,
+            "critical": false
+          },
+          "INT07": {
+            "start": 80,
+            "finish": 83,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "INT05",
+              "INT06"
+            ],
+            "done": false,
+            "late_start": 80,
+            "float": 0,
+            "critical": true
+          },
+          "INT08": {
+            "start": 83,
+            "finish": 87,
+            "duration": 4,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "INT07",
+              "CTL07"
+            ],
+            "done": false,
+            "late_start": 83,
+            "float": 0,
+            "critical": true
+          },
+          "INT09": {
+            "start": 87,
+            "finish": 91,
+            "duration": 4,
+            "resource_wait": 0,
+            "resource": "Dyno A",
+            "preds": [
+              "INT08",
+              "INT06"
+            ],
+            "done": false,
+            "late_start": 87,
+            "float": 0,
+            "critical": true
+          },
+          "PM03": {
+            "start": 58,
+            "finish": 61,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "G02"
+            ],
+            "done": false,
+            "late_start": 88,
+            "float": 30,
+            "critical": false
+          },
+          "PM04": {
+            "start": 91,
+            "finish": 94,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "INT09",
+              "PM03"
+            ],
+            "done": false,
+            "late_start": 91,
+            "float": 0,
+            "critical": true
+          },
+          "PM05": {
+            "start": 94,
+            "finish": 96,
+            "duration": 2,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "PM04"
+            ],
+            "done": false,
+            "late_start": 94,
+            "float": 0,
+            "critical": true
+          },
+          "G03": {
+            "start": 96,
+            "finish": 96,
+            "duration": 0,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "PM05"
+            ],
+            "done": false,
+            "late_start": 96,
+            "float": 0,
+            "critical": true
+          }
+        },
+        "finish": 96,
+        "critical_ids": [
+          "ERS03",
+          "ERS05",
+          "ERS06",
+          "ERS07",
+          "G02",
+          "INT03",
+          "INT04",
+          "INT05",
+          "INT06",
+          "INT07",
+          "INT08",
+          "INT09",
+          "PM04",
+          "PM05",
+          "G03"
+        ]
+      },
+      "ac": 573621,
+      "etc": 656962,
+      "incremental_cost": 0,
+      "delay_cost": 1800,
+      "eac": 1232383,
+      "budget_variance": 47383,
+      "slip": 1,
+      "resource_extension": 6,
+      "readiness": {
+        "rows": [
+          {
+            "id": "EV01",
+            "name": "Requirements approval",
+            "task_id": "G01",
+            "state": "Accepted",
+            "owner": "Systems lead",
+            "reference": "DEMO-REQ-001",
+            "approver": "Technical lead",
+            "accepted_day": 7,
+            "mandatory": true,
+            "accepted": true,
+            "reason": "Accepted",
+            "planned_available_day": 7
+          },
+          {
+            "id": "EV02",
+            "name": "ICE design release",
+            "task_id": "ICE02",
+            "state": "Accepted",
+            "owner": "ICE lead",
+            "reference": "DEMO-ICE-DR1",
+            "approver": "Technical lead",
+            "accepted_day": 19,
+            "mandatory": true,
+            "accepted": true,
+            "reason": "Accepted",
+            "planned_available_day": 19
+          },
+          {
+            "id": "EV03",
+            "name": "Electrical design release",
+            "task_id": "ERS02",
+            "state": "Accepted",
+            "owner": "ERS lead",
+            "reference": "DEMO-ERS-DR1",
+            "approver": "Technical lead",
+            "accepted_day": 19,
+            "mandatory": true,
+            "accepted": true,
+            "reason": "Accepted",
+            "planned_available_day": 19
+          },
+          {
+            "id": "EV04",
+            "name": "Controls validation report",
+            "task_id": "CTL05",
+            "state": "Missing",
+            "owner": "Controls lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 35
+          },
+          {
+            "id": "EV05",
+            "name": "Incoming inspection records",
+            "task_id": "ERS05",
+            "state": "Missing",
+            "owner": "Quality lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 48
+          },
+          {
+            "id": "EV06",
+            "name": "Subsystem test reports",
+            "task_id": "G02",
+            "state": "Missing",
+            "owner": "Test lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 58
+          },
+          {
+            "id": "EV07",
+            "name": "Endurance validation report",
+            "task_id": "INT05",
+            "state": "Missing",
+            "owner": "Validation lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 74
+          },
+          {
+            "id": "EV08",
+            "name": "Thermal and energy report",
+            "task_id": "INT06",
+            "state": "Missing",
+            "owner": "Validation lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 80
+          },
+          {
+            "id": "EV09",
+            "name": "Nonconformance closure",
+            "task_id": "INT08",
+            "state": "Missing",
+            "owner": "Quality lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 87
+          },
+          {
+            "id": "EV10",
+            "name": "Regression validation report",
+            "task_id": "INT09",
+            "state": "Missing",
+            "owner": "Validation lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 91
+          },
+          {
+            "id": "EV11",
+            "name": "Configuration baseline",
+            "task_id": "PM04",
+            "state": "Missing",
+            "owner": "Configuration lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 94
+          },
+          {
+            "id": "EV12",
+            "name": "Interface acceptance",
+            "task_id": "PM05",
+            "state": "Missing",
+            "owner": "Systems lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 96
+          }
+        ],
+        "mandatory": 12,
+        "accepted": 3,
+        "blockers": [
+          "EV04",
+          "EV05",
+          "EV06",
+          "EV07",
+          "EV08",
+          "EV09",
+          "EV10",
+          "EV11",
+          "EV12"
+        ],
+        "ready": false
+      },
+      "simulation": {
+        "runs": 5000,
+        "seed": 2314893,
+        "p50": 99,
+        "p80": 104,
+        "p95": 107,
+        "on_time_probability": 0.029,
+        "sampling_margin_95": 0.004651357100890019,
+        "p80_cost": 1246783,
+        "mean_finish": 100.1462,
+        "histogram": [
+          {
+            "finish_day": 94,
+            "count": 13
+          },
+          {
+            "finish_day": 95,
+            "count": 132
+          },
+          {
+            "finish_day": 96,
+            "count": 467
+          },
+          {
+            "finish_day": 97,
+            "count": 819
+          },
+          {
+            "finish_day": 98,
+            "count": 741
+          },
+          {
+            "finish_day": 99,
+            "count": 645
+          },
+          {
+            "finish_day": 100,
+            "count": 365
+          },
+          {
+            "finish_day": 101,
+            "count": 257
+          },
+          {
+            "finish_day": 102,
+            "count": 277
+          },
+          {
+            "finish_day": 103,
+            "count": 276
+          },
+          {
+            "finish_day": 104,
+            "count": 251
+          },
+          {
+            "finish_day": 105,
+            "count": 225
+          },
+          {
+            "finish_day": 106,
+            "count": 178
+          },
+          {
+            "finish_day": 107,
+            "count": 118
+          },
+          {
+            "finish_day": 108,
+            "count": 91
+          },
+          {
+            "finish_day": 109,
+            "count": 51
+          },
+          {
+            "finish_day": 110,
+            "count": 39
+          },
+          {
+            "finish_day": 111,
+            "count": 16
+          },
+          {
+            "finish_day": 112,
+            "count": 22
+          },
+          {
+            "finish_day": 113,
+            "count": 6
+          },
+          {
+            "finish_day": 114,
+            "count": 4
+          },
+          {
+            "finish_day": 115,
+            "count": 4
+          },
+          {
+            "finish_day": 116,
+            "count": 3
+          }
+        ],
+        "criticality": {
+          "PM01": 0.0,
+          "PM02": 0.0,
+          "G01": 0.0,
+          "ICE01": 0.0,
+          "ERS01": 0.0,
+          "CTL01": 0.0,
+          "INT01": 0.0,
+          "ICE02": 0.0,
+          "ERS02": 0.0,
+          "CTL02": 0.0,
+          "INT02": 0.0,
+          "ICE03": 0.0,
+          "ICE04": 0.0,
+          "ERS03": 1.0,
+          "ERS04": 0.0,
+          "CTL03": 0.0,
+          "CTL04": 0.0,
+          "ICE05": 0.0,
+          "ERS05": 1.0,
+          "CTL05": 0.0,
+          "ICE06": 0.0,
+          "ERS06": 1.0,
+          "ICE07": 0.0,
+          "ERS07": 1.0,
+          "CTL06": 0.0,
+          "G02": 1.0,
+          "INT03": 1.0,
+          "INT04": 1.0,
+          "INT05": 1.0,
+          "INT06": 1.0,
+          "CTL07": 0.0,
+          "INT07": 1.0,
+          "INT08": 1.0,
+          "INT09": 1.0,
+          "PM03": 0.0,
+          "PM04": 1.0,
+          "PM05": 1.0,
+          "G03": 1.0
+        }
+      }
+    },
+    {
+      "id": "expedite",
+      "name": "Expedite supply",
+      "description": "Reserve supplier finishing capacity and expedited delivery. Retain the same acceptance scope.",
+      "approval": "Proposed, not approved",
+      "forecast": {
+        "tasks": {
+          "PM01": {
+            "start": 0,
+            "finish": 3,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [],
+            "done": true,
+            "late_start": 11,
+            "float": 11,
+            "critical": false
+          },
+          "PM02": {
+            "start": 3,
+            "finish": 7,
+            "duration": 4,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "PM01"
+            ],
+            "done": true,
+            "late_start": 14,
+            "float": 11,
+            "critical": false
+          },
+          "G01": {
+            "start": 7,
+            "finish": 7,
+            "duration": 0,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "PM02"
+            ],
+            "done": true,
+            "late_start": 18,
+            "float": 11,
+            "critical": false
+          },
+          "ICE01": {
+            "start": 7,
+            "finish": 12,
+            "duration": 5,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "G01"
+            ],
+            "done": true,
+            "late_start": 18,
+            "float": 11,
+            "critical": false
+          },
+          "ERS01": {
+            "start": 7,
+            "finish": 12,
+            "duration": 5,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "G01"
+            ],
+            "done": true,
+            "late_start": 21,
+            "float": 14,
+            "critical": false
+          },
+          "CTL01": {
+            "start": 7,
+            "finish": 11,
+            "duration": 4,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "G01"
+            ],
+            "done": true,
+            "late_start": 23,
+            "float": 16,
+            "critical": false
+          },
+          "INT01": {
+            "start": 7,
+            "finish": 12,
+            "duration": 5,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "G01"
+            ],
+            "done": true,
+            "late_start": 27,
+            "float": 20,
+            "critical": false
+          },
+          "ICE02": {
+            "start": 12,
+            "finish": 19,
+            "duration": 7,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ICE01"
+            ],
+            "done": true,
+            "late_start": 23,
+            "float": 11,
+            "critical": false
+          },
+          "ERS02": {
+            "start": 12,
+            "finish": 19,
+            "duration": 7,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ERS01"
+            ],
+            "done": true,
+            "late_start": 26,
+            "float": 14,
+            "critical": false
+          },
+          "CTL02": {
+            "start": 11,
+            "finish": 17,
+            "duration": 6,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "CTL01",
+              "PM02"
+            ],
+            "done": true,
+            "late_start": 27,
+            "float": 16,
+            "critical": false
+          },
+          "INT02": {
+            "start": 12,
+            "finish": 20,
+            "duration": 8,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "INT01"
+            ],
+            "done": true,
+            "late_start": 32,
+            "float": 20,
+            "critical": false
+          },
+          "ICE03": {
+            "start": 30,
+            "finish": 31,
+            "duration": 1,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ICE02"
+            ],
+            "done": false,
+            "late_start": 31,
+            "float": 1,
+            "critical": false
+          },
+          "ICE04": {
+            "start": 30,
+            "finish": 32,
+            "duration": 2,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ICE02"
+            ],
+            "done": false,
+            "late_start": 30,
+            "float": 0,
+            "critical": true
+          },
+          "ERS03": {
+            "start": 30,
+            "finish": 37,
+            "duration": 7,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ERS02"
+            ],
+            "done": false,
+            "late_start": 33,
+            "float": 3,
+            "critical": false
+          },
+          "ERS04": {
+            "start": 30,
+            "finish": 34,
+            "duration": 4,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ERS02"
+            ],
+            "done": false,
+            "late_start": 36,
+            "float": 6,
+            "critical": false
+          },
+          "CTL03": {
+            "start": 17,
+            "finish": 29,
+            "duration": 12,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "CTL02"
+            ],
+            "done": true,
+            "late_start": 33,
+            "float": 16,
+            "critical": false
+          },
+          "CTL04": {
+            "start": 17,
+            "finish": 24,
+            "duration": 7,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "CTL02"
+            ],
+            "done": true,
+            "late_start": 38,
+            "float": 21,
+            "critical": false
+          },
+          "ICE05": {
+            "start": 32,
+            "finish": 35,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ICE03",
+              "ICE04"
+            ],
+            "done": false,
+            "late_start": 32,
+            "float": 0,
+            "critical": true
+          },
+          "ERS05": {
+            "start": 37,
+            "finish": 40,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ERS03",
+              "ERS04"
+            ],
+            "done": false,
+            "late_start": 40,
+            "float": 3,
+            "critical": false
+          },
+          "CTL05": {
+            "start": 30,
+            "finish": 35,
+            "duration": 5,
+            "resource_wait": 0,
+            "resource": "HIL rig",
+            "preds": [
+              "CTL03",
+              "CTL04"
+            ],
+            "done": false,
+            "late_start": 45,
+            "float": 15,
+            "critical": false
+          },
+          "ICE06": {
+            "start": 35,
+            "finish": 40,
+            "duration": 5,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ICE05"
+            ],
+            "done": false,
+            "late_start": 35,
+            "float": 0,
+            "critical": true
+          },
+          "ERS06": {
+            "start": 40,
+            "finish": 44,
+            "duration": 4,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ERS05"
+            ],
+            "done": false,
+            "late_start": 43,
+            "float": 3,
+            "critical": false
+          },
+          "ICE07": {
+            "start": 40,
+            "finish": 47,
+            "duration": 7,
+            "resource_wait": 0,
+            "resource": "Dyno A",
+            "preds": [
+              "ICE06",
+              "INT02"
+            ],
+            "done": false,
+            "late_start": 40,
+            "float": 0,
+            "critical": true
+          },
+          "ERS07": {
+            "start": 47,
+            "finish": 53,
+            "duration": 6,
+            "resource_wait": 3,
+            "resource": "Dyno A",
+            "preds": [
+              "ERS06",
+              "INT02",
+              "ICE07"
+            ],
+            "done": false,
+            "late_start": 47,
+            "float": 0,
+            "critical": true
+          },
+          "CTL06": {
+            "start": 35,
+            "finish": 38,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "CTL05"
+            ],
+            "done": false,
+            "late_start": 50,
+            "float": 15,
+            "critical": false
+          },
+          "G02": {
+            "start": 53,
+            "finish": 53,
+            "duration": 0,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ICE07",
+              "ERS07",
+              "CTL06"
+            ],
+            "done": false,
+            "late_start": 53,
+            "float": 0,
+            "critical": true
+          },
+          "INT03": {
+            "start": 53,
+            "finish": 58,
+            "duration": 5,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "G02"
+            ],
+            "done": false,
+            "late_start": 53,
+            "float": 0,
+            "critical": true
+          },
+          "INT04": {
+            "start": 58,
+            "finish": 61,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "Dyno A",
+            "preds": [
+              "INT03",
+              "ERS07"
+            ],
+            "done": false,
+            "late_start": 58,
+            "float": 0,
+            "critical": true
+          },
+          "INT05": {
+            "start": 61,
+            "finish": 69,
+            "duration": 8,
+            "resource_wait": 0,
+            "resource": "Dyno A",
+            "preds": [
+              "INT04"
+            ],
+            "done": false,
+            "late_start": 61,
+            "float": 0,
+            "critical": true
+          },
+          "INT06": {
+            "start": 69,
+            "finish": 75,
+            "duration": 6,
+            "resource_wait": 8,
+            "resource": "Dyno A",
+            "preds": [
+              "INT04",
+              "INT05"
+            ],
+            "done": false,
+            "late_start": 69,
+            "float": 0,
+            "critical": true
+          },
+          "CTL07": {
+            "start": 61,
+            "finish": 66,
+            "duration": 5,
+            "resource_wait": 0,
+            "resource": "HIL rig",
+            "preds": [
+              "INT04",
+              "CTL05"
+            ],
+            "done": false,
+            "late_start": 73,
+            "float": 12,
+            "critical": false
+          },
+          "INT07": {
+            "start": 75,
+            "finish": 78,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "INT05",
+              "INT06"
+            ],
+            "done": false,
+            "late_start": 75,
+            "float": 0,
+            "critical": true
+          },
+          "INT08": {
+            "start": 78,
+            "finish": 82,
+            "duration": 4,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "INT07",
+              "CTL07"
+            ],
+            "done": false,
+            "late_start": 78,
+            "float": 0,
+            "critical": true
+          },
+          "INT09": {
+            "start": 82,
+            "finish": 86,
+            "duration": 4,
+            "resource_wait": 0,
+            "resource": "Dyno A",
+            "preds": [
+              "INT08",
+              "INT06"
+            ],
+            "done": false,
+            "late_start": 82,
+            "float": 0,
+            "critical": true
+          },
+          "PM03": {
+            "start": 53,
+            "finish": 56,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "G02"
+            ],
+            "done": false,
+            "late_start": 83,
+            "float": 30,
+            "critical": false
+          },
+          "PM04": {
+            "start": 86,
+            "finish": 89,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "INT09",
+              "PM03"
+            ],
+            "done": false,
+            "late_start": 86,
+            "float": 0,
+            "critical": true
+          },
+          "PM05": {
+            "start": 89,
+            "finish": 91,
+            "duration": 2,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "PM04"
+            ],
+            "done": false,
+            "late_start": 89,
+            "float": 0,
+            "critical": true
+          },
+          "G03": {
+            "start": 91,
+            "finish": 91,
+            "duration": 0,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "PM05"
+            ],
+            "done": false,
+            "late_start": 91,
+            "float": 0,
+            "critical": true
+          }
+        },
+        "finish": 91,
+        "critical_ids": [
+          "ICE04",
+          "ICE05",
+          "ICE06",
+          "ICE07",
+          "ERS07",
+          "G02",
+          "INT03",
+          "INT04",
+          "INT05",
+          "INT06",
+          "INT07",
+          "INT08",
+          "INT09",
+          "PM04",
+          "PM05",
+          "G03"
+        ]
+      },
+      "ac": 573621,
+      "etc": 656962,
+      "incremental_cost": 18000,
+      "delay_cost": 0,
+      "eac": 1248583,
+      "budget_variance": 63583,
+      "slip": 0,
+      "resource_extension": 9,
+      "readiness": {
+        "rows": [
+          {
+            "id": "EV01",
+            "name": "Requirements approval",
+            "task_id": "G01",
+            "state": "Accepted",
+            "owner": "Systems lead",
+            "reference": "DEMO-REQ-001",
+            "approver": "Technical lead",
+            "accepted_day": 7,
+            "mandatory": true,
+            "accepted": true,
+            "reason": "Accepted",
+            "planned_available_day": 7
+          },
+          {
+            "id": "EV02",
+            "name": "ICE design release",
+            "task_id": "ICE02",
+            "state": "Accepted",
+            "owner": "ICE lead",
+            "reference": "DEMO-ICE-DR1",
+            "approver": "Technical lead",
+            "accepted_day": 19,
+            "mandatory": true,
+            "accepted": true,
+            "reason": "Accepted",
+            "planned_available_day": 19
+          },
+          {
+            "id": "EV03",
+            "name": "Electrical design release",
+            "task_id": "ERS02",
+            "state": "Accepted",
+            "owner": "ERS lead",
+            "reference": "DEMO-ERS-DR1",
+            "approver": "Technical lead",
+            "accepted_day": 19,
+            "mandatory": true,
+            "accepted": true,
+            "reason": "Accepted",
+            "planned_available_day": 19
+          },
+          {
+            "id": "EV04",
+            "name": "Controls validation report",
+            "task_id": "CTL05",
+            "state": "Missing",
+            "owner": "Controls lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 35
+          },
+          {
+            "id": "EV05",
+            "name": "Incoming inspection records",
+            "task_id": "ERS05",
+            "state": "Missing",
+            "owner": "Quality lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 40
+          },
+          {
+            "id": "EV06",
+            "name": "Subsystem test reports",
+            "task_id": "G02",
+            "state": "Missing",
+            "owner": "Test lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 53
+          },
+          {
+            "id": "EV07",
+            "name": "Endurance validation report",
+            "task_id": "INT05",
+            "state": "Missing",
+            "owner": "Validation lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 69
+          },
+          {
+            "id": "EV08",
+            "name": "Thermal and energy report",
+            "task_id": "INT06",
+            "state": "Missing",
+            "owner": "Validation lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 75
+          },
+          {
+            "id": "EV09",
+            "name": "Nonconformance closure",
+            "task_id": "INT08",
+            "state": "Missing",
+            "owner": "Quality lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 82
+          },
+          {
+            "id": "EV10",
+            "name": "Regression validation report",
+            "task_id": "INT09",
+            "state": "Missing",
+            "owner": "Validation lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 86
+          },
+          {
+            "id": "EV11",
+            "name": "Configuration baseline",
+            "task_id": "PM04",
+            "state": "Missing",
+            "owner": "Configuration lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 89
+          },
+          {
+            "id": "EV12",
+            "name": "Interface acceptance",
+            "task_id": "PM05",
+            "state": "Missing",
+            "owner": "Systems lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 91
+          }
+        ],
+        "mandatory": 12,
+        "accepted": 3,
+        "blockers": [
+          "EV04",
+          "EV05",
+          "EV06",
+          "EV07",
+          "EV08",
+          "EV09",
+          "EV10",
+          "EV11",
+          "EV12"
+        ],
+        "ready": false
+      },
+      "simulation": {
+        "runs": 5000,
+        "seed": 2314893,
+        "p50": 93,
+        "p80": 96,
+        "p95": 99,
+        "on_time_probability": 0.7854,
+        "sampling_margin_95": 0.011379714763947293,
+        "p80_cost": 1250383,
+        "mean_finish": 93.8312,
+        "histogram": [
+          {
+            "finish_day": 89,
+            "count": 3
+          },
+          {
+            "finish_day": 90,
+            "count": 64
+          },
+          {
+            "finish_day": 91,
+            "count": 624
+          },
+          {
+            "finish_day": 92,
+            "count": 1215
+          },
+          {
+            "finish_day": 93,
+            "count": 1066
+          },
+          {
+            "finish_day": 94,
+            "count": 627
+          },
+          {
+            "finish_day": 95,
+            "count": 328
+          },
+          {
+            "finish_day": 96,
+            "count": 217
+          },
+          {
+            "finish_day": 97,
+            "count": 230
+          },
+          {
+            "finish_day": 98,
+            "count": 227
+          },
+          {
+            "finish_day": 99,
+            "count": 174
+          },
+          {
+            "finish_day": 100,
+            "count": 120
+          },
+          {
+            "finish_day": 101,
+            "count": 57
+          },
+          {
+            "finish_day": 102,
+            "count": 20
+          },
+          {
+            "finish_day": 103,
+            "count": 10
+          },
+          {
+            "finish_day": 104,
+            "count": 8
+          },
+          {
+            "finish_day": 105,
+            "count": 6
+          },
+          {
+            "finish_day": 106,
+            "count": 2
+          },
+          {
+            "finish_day": 107,
+            "count": 2
+          }
+        ],
+        "criticality": {
+          "PM01": 0.0,
+          "PM02": 0.0,
+          "G01": 0.0,
+          "ICE01": 0.0,
+          "ERS01": 0.0,
+          "CTL01": 0.0,
+          "INT01": 0.0,
+          "ICE02": 0.0,
+          "ERS02": 0.0,
+          "CTL02": 0.0,
+          "INT02": 0.0,
+          "ICE03": 0.0,
+          "ICE04": 0.919,
+          "ERS03": 0.0918,
+          "ERS04": 0.0,
+          "CTL03": 0.0,
+          "CTL04": 0.0,
+          "ICE05": 0.919,
+          "ERS05": 0.0918,
+          "CTL05": 0.0,
+          "ICE06": 0.919,
+          "ERS06": 0.0918,
+          "ICE07": 0.919,
+          "ERS07": 1.0,
+          "CTL06": 0.0,
+          "G02": 1.0,
+          "INT03": 1.0,
+          "INT04": 1.0,
+          "INT05": 1.0,
+          "INT06": 1.0,
+          "CTL07": 0.0,
+          "INT07": 1.0,
+          "INT08": 1.0,
+          "INT09": 1.0,
+          "PM03": 0.0,
+          "PM04": 1.0,
+          "PM05": 1.0,
+          "G03": 1.0
+        }
+      }
+    },
+    {
+      "id": "recovery",
+      "name": "Coordinated recovery",
+      "description": "Expedite supply plus a dedicated integration engineer and parallel evidence preparation. Test durations and acceptance scope stay unchanged.",
+      "approval": "Proposed, not approved",
+      "forecast": {
+        "tasks": {
+          "PM01": {
+            "start": 0,
+            "finish": 3,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [],
+            "done": true,
+            "late_start": 11,
+            "float": 11,
+            "critical": false
+          },
+          "PM02": {
+            "start": 3,
+            "finish": 7,
+            "duration": 4,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "PM01"
+            ],
+            "done": true,
+            "late_start": 14,
+            "float": 11,
+            "critical": false
+          },
+          "G01": {
+            "start": 7,
+            "finish": 7,
+            "duration": 0,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "PM02"
+            ],
+            "done": true,
+            "late_start": 18,
+            "float": 11,
+            "critical": false
+          },
+          "ICE01": {
+            "start": 7,
+            "finish": 12,
+            "duration": 5,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "G01"
+            ],
+            "done": true,
+            "late_start": 18,
+            "float": 11,
+            "critical": false
+          },
+          "ERS01": {
+            "start": 7,
+            "finish": 12,
+            "duration": 5,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "G01"
+            ],
+            "done": true,
+            "late_start": 21,
+            "float": 14,
+            "critical": false
+          },
+          "CTL01": {
+            "start": 7,
+            "finish": 11,
+            "duration": 4,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "G01"
+            ],
+            "done": true,
+            "late_start": 23,
+            "float": 16,
+            "critical": false
+          },
+          "INT01": {
+            "start": 7,
+            "finish": 12,
+            "duration": 5,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "G01"
+            ],
+            "done": true,
+            "late_start": 27,
+            "float": 20,
+            "critical": false
+          },
+          "ICE02": {
+            "start": 12,
+            "finish": 19,
+            "duration": 7,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ICE01"
+            ],
+            "done": true,
+            "late_start": 23,
+            "float": 11,
+            "critical": false
+          },
+          "ERS02": {
+            "start": 12,
+            "finish": 19,
+            "duration": 7,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ERS01"
+            ],
+            "done": true,
+            "late_start": 26,
+            "float": 14,
+            "critical": false
+          },
+          "CTL02": {
+            "start": 11,
+            "finish": 17,
+            "duration": 6,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "CTL01",
+              "PM02"
+            ],
+            "done": true,
+            "late_start": 27,
+            "float": 16,
+            "critical": false
+          },
+          "INT02": {
+            "start": 12,
+            "finish": 20,
+            "duration": 8,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "INT01"
+            ],
+            "done": true,
+            "late_start": 32,
+            "float": 20,
+            "critical": false
+          },
+          "ICE03": {
+            "start": 30,
+            "finish": 31,
+            "duration": 1,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ICE02"
+            ],
+            "done": false,
+            "late_start": 31,
+            "float": 1,
+            "critical": false
+          },
+          "ICE04": {
+            "start": 30,
+            "finish": 32,
+            "duration": 2,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ICE02"
+            ],
+            "done": false,
+            "late_start": 30,
+            "float": 0,
+            "critical": true
+          },
+          "ERS03": {
+            "start": 30,
+            "finish": 37,
+            "duration": 7,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ERS02"
+            ],
+            "done": false,
+            "late_start": 33,
+            "float": 3,
+            "critical": false
+          },
+          "ERS04": {
+            "start": 30,
+            "finish": 34,
+            "duration": 4,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ERS02"
+            ],
+            "done": false,
+            "late_start": 36,
+            "float": 6,
+            "critical": false
+          },
+          "CTL03": {
+            "start": 17,
+            "finish": 29,
+            "duration": 12,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "CTL02"
+            ],
+            "done": true,
+            "late_start": 33,
+            "float": 16,
+            "critical": false
+          },
+          "CTL04": {
+            "start": 17,
+            "finish": 24,
+            "duration": 7,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "CTL02"
+            ],
+            "done": true,
+            "late_start": 38,
+            "float": 21,
+            "critical": false
+          },
+          "ICE05": {
+            "start": 32,
+            "finish": 35,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ICE03",
+              "ICE04"
+            ],
+            "done": false,
+            "late_start": 32,
+            "float": 0,
+            "critical": true
+          },
+          "ERS05": {
+            "start": 37,
+            "finish": 40,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ERS03",
+              "ERS04"
+            ],
+            "done": false,
+            "late_start": 40,
+            "float": 3,
+            "critical": false
+          },
+          "CTL05": {
+            "start": 30,
+            "finish": 35,
+            "duration": 5,
+            "resource_wait": 0,
+            "resource": "HIL rig",
+            "preds": [
+              "CTL03",
+              "CTL04"
+            ],
+            "done": false,
+            "late_start": 45,
+            "float": 15,
+            "critical": false
+          },
+          "ICE06": {
+            "start": 35,
+            "finish": 40,
+            "duration": 5,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ICE05"
+            ],
+            "done": false,
+            "late_start": 35,
+            "float": 0,
+            "critical": true
+          },
+          "ERS06": {
+            "start": 40,
+            "finish": 44,
+            "duration": 4,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ERS05"
+            ],
+            "done": false,
+            "late_start": 43,
+            "float": 3,
+            "critical": false
+          },
+          "ICE07": {
+            "start": 40,
+            "finish": 47,
+            "duration": 7,
+            "resource_wait": 0,
+            "resource": "Dyno A",
+            "preds": [
+              "ICE06",
+              "INT02"
+            ],
+            "done": false,
+            "late_start": 40,
+            "float": 0,
+            "critical": true
+          },
+          "ERS07": {
+            "start": 47,
+            "finish": 53,
+            "duration": 6,
+            "resource_wait": 3,
+            "resource": "Dyno A",
+            "preds": [
+              "ERS06",
+              "INT02",
+              "ICE07"
+            ],
+            "done": false,
+            "late_start": 47,
+            "float": 0,
+            "critical": true
+          },
+          "CTL06": {
+            "start": 35,
+            "finish": 38,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "CTL05"
+            ],
+            "done": false,
+            "late_start": 50,
+            "float": 15,
+            "critical": false
+          },
+          "G02": {
+            "start": 53,
+            "finish": 53,
+            "duration": 0,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "ICE07",
+              "ERS07",
+              "CTL06"
+            ],
+            "done": false,
+            "late_start": 53,
+            "float": 0,
+            "critical": true
+          },
+          "INT03": {
+            "start": 53,
+            "finish": 57,
+            "duration": 4,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "G02"
+            ],
+            "done": false,
+            "late_start": 53,
+            "float": 0,
+            "critical": true
+          },
+          "INT04": {
+            "start": 57,
+            "finish": 60,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "Dyno A",
+            "preds": [
+              "INT03",
+              "ERS07"
+            ],
+            "done": false,
+            "late_start": 57,
+            "float": 0,
+            "critical": true
+          },
+          "INT05": {
+            "start": 60,
+            "finish": 68,
+            "duration": 8,
+            "resource_wait": 0,
+            "resource": "Dyno A",
+            "preds": [
+              "INT04"
+            ],
+            "done": false,
+            "late_start": 60,
+            "float": 0,
+            "critical": true
+          },
+          "INT06": {
+            "start": 68,
+            "finish": 74,
+            "duration": 6,
+            "resource_wait": 8,
+            "resource": "Dyno A",
+            "preds": [
+              "INT04",
+              "INT05"
+            ],
+            "done": false,
+            "late_start": 68,
+            "float": 0,
+            "critical": true
+          },
+          "CTL07": {
+            "start": 60,
+            "finish": 65,
+            "duration": 5,
+            "resource_wait": 0,
+            "resource": "HIL rig",
+            "preds": [
+              "INT04",
+              "CTL05"
+            ],
+            "done": false,
+            "late_start": 72,
+            "float": 12,
+            "critical": false
+          },
+          "INT07": {
+            "start": 74,
+            "finish": 77,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "INT05",
+              "INT06"
+            ],
+            "done": false,
+            "late_start": 74,
+            "float": 0,
+            "critical": true
+          },
+          "INT08": {
+            "start": 77,
+            "finish": 80,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "INT07",
+              "CTL07"
+            ],
+            "done": false,
+            "late_start": 77,
+            "float": 0,
+            "critical": true
+          },
+          "INT09": {
+            "start": 80,
+            "finish": 84,
+            "duration": 4,
+            "resource_wait": 0,
+            "resource": "Dyno A",
+            "preds": [
+              "INT08",
+              "INT06"
+            ],
+            "done": false,
+            "late_start": 80,
+            "float": 0,
+            "critical": true
+          },
+          "PM03": {
+            "start": 53,
+            "finish": 56,
+            "duration": 3,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "G02"
+            ],
+            "done": false,
+            "late_start": 81,
+            "float": 28,
+            "critical": false
+          },
+          "PM04": {
+            "start": 84,
+            "finish": 86,
+            "duration": 2,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "INT09",
+              "PM03"
+            ],
+            "done": false,
+            "late_start": 84,
+            "float": 0,
+            "critical": true
+          },
+          "PM05": {
+            "start": 86,
+            "finish": 88,
+            "duration": 2,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "PM04"
+            ],
+            "done": false,
+            "late_start": 86,
+            "float": 0,
+            "critical": true
+          },
+          "G03": {
+            "start": 88,
+            "finish": 88,
+            "duration": 0,
+            "resource_wait": 0,
+            "resource": "",
+            "preds": [
+              "PM05"
+            ],
+            "done": false,
+            "late_start": 88,
+            "float": 0,
+            "critical": true
+          }
+        },
+        "finish": 88,
+        "critical_ids": [
+          "ICE04",
+          "ICE05",
+          "ICE06",
+          "ICE07",
+          "ERS07",
+          "G02",
+          "INT03",
+          "INT04",
+          "INT05",
+          "INT06",
+          "INT07",
+          "INT08",
+          "INT09",
+          "PM04",
+          "PM05",
+          "G03"
+        ]
+      },
+      "ac": 573621,
+      "etc": 656962,
+      "incremental_cost": 31000,
+      "delay_cost": 0,
+      "eac": 1261583,
+      "budget_variance": 76583,
+      "slip": 0,
+      "resource_extension": 9,
+      "readiness": {
+        "rows": [
+          {
+            "id": "EV01",
+            "name": "Requirements approval",
+            "task_id": "G01",
+            "state": "Accepted",
+            "owner": "Systems lead",
+            "reference": "DEMO-REQ-001",
+            "approver": "Technical lead",
+            "accepted_day": 7,
+            "mandatory": true,
+            "accepted": true,
+            "reason": "Accepted",
+            "planned_available_day": 7
+          },
+          {
+            "id": "EV02",
+            "name": "ICE design release",
+            "task_id": "ICE02",
+            "state": "Accepted",
+            "owner": "ICE lead",
+            "reference": "DEMO-ICE-DR1",
+            "approver": "Technical lead",
+            "accepted_day": 19,
+            "mandatory": true,
+            "accepted": true,
+            "reason": "Accepted",
+            "planned_available_day": 19
+          },
+          {
+            "id": "EV03",
+            "name": "Electrical design release",
+            "task_id": "ERS02",
+            "state": "Accepted",
+            "owner": "ERS lead",
+            "reference": "DEMO-ERS-DR1",
+            "approver": "Technical lead",
+            "accepted_day": 19,
+            "mandatory": true,
+            "accepted": true,
+            "reason": "Accepted",
+            "planned_available_day": 19
+          },
+          {
+            "id": "EV04",
+            "name": "Controls validation report",
+            "task_id": "CTL05",
+            "state": "Missing",
+            "owner": "Controls lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 35
+          },
+          {
+            "id": "EV05",
+            "name": "Incoming inspection records",
+            "task_id": "ERS05",
+            "state": "Missing",
+            "owner": "Quality lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 40
+          },
+          {
+            "id": "EV06",
+            "name": "Subsystem test reports",
+            "task_id": "G02",
+            "state": "Missing",
+            "owner": "Test lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 53
+          },
+          {
+            "id": "EV07",
+            "name": "Endurance validation report",
+            "task_id": "INT05",
+            "state": "Missing",
+            "owner": "Validation lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 68
+          },
+          {
+            "id": "EV08",
+            "name": "Thermal and energy report",
+            "task_id": "INT06",
+            "state": "Missing",
+            "owner": "Validation lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 74
+          },
+          {
+            "id": "EV09",
+            "name": "Nonconformance closure",
+            "task_id": "INT08",
+            "state": "Missing",
+            "owner": "Quality lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 80
+          },
+          {
+            "id": "EV10",
+            "name": "Regression validation report",
+            "task_id": "INT09",
+            "state": "Missing",
+            "owner": "Validation lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 84
+          },
+          {
+            "id": "EV11",
+            "name": "Configuration baseline",
+            "task_id": "PM04",
+            "state": "Missing",
+            "owner": "Configuration lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 86
+          },
+          {
+            "id": "EV12",
+            "name": "Interface acceptance",
+            "task_id": "PM05",
+            "state": "Missing",
+            "owner": "Systems lead",
+            "reference": "",
+            "approver": "",
+            "accepted_day": null,
+            "mandatory": true,
+            "accepted": false,
+            "reason": "Task incomplete",
+            "planned_available_day": 88
+          }
+        ],
+        "mandatory": 12,
+        "accepted": 3,
+        "blockers": [
+          "EV04",
+          "EV05",
+          "EV06",
+          "EV07",
+          "EV08",
+          "EV09",
+          "EV10",
+          "EV11",
+          "EV12"
+        ],
+        "ready": false
+      },
+      "simulation": {
+        "runs": 5000,
+        "seed": 2314893,
+        "p50": 90,
+        "p80": 92,
+        "p95": 96,
+        "on_time_probability": 0.9418,
+        "sampling_margin_95": 0.0064895099786655705,
+        "p80_cost": 1261583,
+        "mean_finish": 90.4226,
+        "histogram": [
+          {
+            "finish_day": 86,
+            "count": 3
+          },
+          {
+            "finish_day": 87,
+            "count": 90
+          },
+          {
+            "finish_day": 88,
+            "count": 770
+          },
+          {
+            "finish_day": 89,
+            "count": 1396
+          },
+          {
+            "finish_day": 90,
+            "count": 1093
+          },
+          {
+            "finish_day": 91,
+            "count": 533
+          },
+          {
+            "finish_day": 92,
+            "count": 276
+          },
+          {
+            "finish_day": 93,
+            "count": 171
+          },
+          {
+            "finish_day": 94,
+            "count": 191
+          },
+          {
+            "finish_day": 95,
+            "count": 186
+          },
+          {
+            "finish_day": 96,
+            "count": 143
+          },
+          {
+            "finish_day": 97,
+            "count": 80
+          },
+          {
+            "finish_day": 98,
+            "count": 37
+          },
+          {
+            "finish_day": 99,
+            "count": 10
+          },
+          {
+            "finish_day": 100,
+            "count": 7
+          },
+          {
+            "finish_day": 101,
+            "count": 8
+          },
+          {
+            "finish_day": 102,
+            "count": 3
+          },
+          {
+            "finish_day": 103,
+            "count": 1
+          },
+          {
+            "finish_day": 104,
+            "count": 2
+          }
+        ],
+        "criticality": {
+          "PM01": 0.0,
+          "PM02": 0.0,
+          "G01": 0.0,
+          "ICE01": 0.0,
+          "ERS01": 0.0,
+          "CTL01": 0.0,
+          "INT01": 0.0,
+          "ICE02": 0.0,
+          "ERS02": 0.0,
+          "CTL02": 0.0,
+          "INT02": 0.0,
+          "ICE03": 0.0,
+          "ICE04": 0.919,
+          "ERS03": 0.0918,
+          "ERS04": 0.0,
+          "CTL03": 0.0,
+          "CTL04": 0.0,
+          "ICE05": 0.919,
+          "ERS05": 0.0918,
+          "CTL05": 0.0,
+          "ICE06": 0.919,
+          "ERS06": 0.0918,
+          "ICE07": 0.919,
+          "ERS07": 1.0,
+          "CTL06": 0.0,
+          "G02": 1.0,
+          "INT03": 1.0,
+          "INT04": 1.0,
+          "INT05": 1.0,
+          "INT06": 1.0,
+          "CTL07": 0.0,
+          "INT07": 1.0,
+          "INT08": 1.0,
+          "INT09": 1.0,
+          "PM03": 0.0,
+          "PM04": 1.0,
+          "PM05": 1.0,
+          "G03": 1.0
+        }
+      }
+    }
+  ],
+  "risk_ablations": [
+    {
+      "risk": "supplier",
+      "mean_days_reduced": 1.4335999999999984,
+      "p80_days_reduced": 4
+    },
+    {
+      "risk": "retest",
+      "mean_days_reduced": 0.988599999999991,
+      "p80_days_reduced": 3
+    }
+  ],
+  "sensitivities": [
+    {
+      "assumption": "Recovery dates, but reference risk probabilities retained",
+      "result": {
+        "runs": 5000,
+        "seed": 2314893,
+        "p50": 90,
+        "p80": 94,
+        "p95": 97,
+        "on_time_probability": 0.9056,
+        "sampling_margin_95": 0.008104482209543065,
+        "p80_cost": 1261583,
+        "mean_finish": 91.0808,
+        "histogram": [
+          {
+            "finish_day": 86,
+            "count": 3
+          },
+          {
+            "finish_day": 87,
+            "count": 71
+          },
+          {
+            "finish_day": 88,
+            "count": 625
+          },
+          {
+            "finish_day": 89,
+            "count": 1155
+          },
+          {
+            "finish_day": 90,
+            "count": 957
+          },
+          {
+            "finish_day": 91,
+            "count": 524
+          },
+          {
+            "finish_day": 92,
+            "count": 355
+          },
+          {
+            "finish_day": 93,
+            "count": 258
+          },
+          {
+            "finish_day": 94,
+            "count": 303
+          },
+          {
+            "finish_day": 95,
+            "count": 277
+          },
+          {
+            "finish_day": 96,
+            "count": 199
+          },
+          {
+            "finish_day": 97,
+            "count": 119
+          },
+          {
+            "finish_day": 98,
+            "count": 76
+          },
+          {
+            "finish_day": 99,
+            "count": 33
+          },
+          {
+            "finish_day": 100,
+            "count": 18
+          },
+          {
+            "finish_day": 101,
+            "count": 15
+          },
+          {
+            "finish_day": 102,
+            "count": 7
+          },
+          {
+            "finish_day": 103,
+            "count": 2
+          },
+          {
+            "finish_day": 104,
+            "count": 3
+          }
+        ],
+        "criticality": {
+          "PM01": 0.0,
+          "PM02": 0.0,
+          "G01": 0.0,
+          "ICE01": 0.0,
+          "ERS01": 0.0,
+          "CTL01": 0.0,
+          "INT01": 0.0,
+          "ICE02": 0.0,
+          "ERS02": 0.0,
+          "CTL02": 0.0,
+          "INT02": 0.0,
+          "ICE03": 0.0,
+          "ICE04": 0.7994,
+          "ERS03": 0.229,
+          "ERS04": 0.0,
+          "CTL03": 0.0,
+          "CTL04": 0.0,
+          "ICE05": 0.7994,
+          "ERS05": 0.229,
+          "CTL05": 0.0,
+          "ICE06": 0.7994,
+          "ERS06": 0.229,
+          "ICE07": 0.7994,
+          "ERS07": 1.0,
+          "CTL06": 0.0,
+          "G02": 1.0,
+          "INT03": 1.0,
+          "INT04": 1.0,
+          "INT05": 1.0,
+          "INT06": 1.0,
+          "CTL07": 0.0,
+          "INT07": 1.0,
+          "INT08": 1.0,
+          "INT09": 1.0,
+          "PM03": 0.0,
+          "PM04": 1.0,
+          "PM05": 1.0,
+          "G03": 1.0
+        }
+      }
+    },
+    {
+      "assumption": "Recovery with wider remaining-duration range (0.80, 1.00, 1.30)",
+      "result": {
+        "runs": 5000,
+        "seed": 2314893,
+        "p50": 90,
+        "p80": 93,
+        "p95": 97,
+        "on_time_probability": 0.9186,
+        "sampling_margin_95": 0.007579603578868754,
+        "p80_cost": 1261583,
+        "mean_finish": 90.8732,
+        "histogram": [
+          {
+            "finish_day": 83,
+            "count": 2
+          },
+          {
+            "finish_day": 84,
+            "count": 7
+          },
+          {
+            "finish_day": 85,
+            "count": 23
+          },
+          {
+            "finish_day": 86,
+            "count": 106
+          },
+          {
+            "finish_day": 87,
+            "count": 264
+          },
+          {
+            "finish_day": 88,
+            "count": 566
+          },
+          {
+            "finish_day": 89,
+            "count": 768
+          },
+          {
+            "finish_day": 90,
+            "count": 861
+          },
+          {
+            "finish_day": 91,
+            "count": 718
+          },
+          {
+            "finish_day": 92,
+            "count": 538
+          },
+          {
+            "finish_day": 93,
+            "count": 310
+          },
+          {
+            "finish_day": 94,
+            "count": 246
+          },
+          {
+            "finish_day": 95,
+            "count": 184
+          },
+          {
+            "finish_day": 96,
+            "count": 138
+          },
+          {
+            "finish_day": 97,
+            "count": 115
+          },
+          {
+            "finish_day": 98,
+            "count": 75
+          },
+          {
+            "finish_day": 99,
+            "count": 38
+          },
+          {
+            "finish_day": 100,
+            "count": 17
+          },
+          {
+            "finish_day": 101,
+            "count": 13
+          },
+          {
+            "finish_day": 102,
+            "count": 9
+          },
+          {
+            "finish_day": 104,
+            "count": 1
+          },
+          {
+            "finish_day": 105,
+            "count": 1
+          }
+        ],
+        "criticality": {
+          "PM01": 0.0,
+          "PM02": 0.0,
+          "G01": 0.0,
+          "ICE01": 0.0,
+          "ERS01": 0.0,
+          "CTL01": 0.0,
+          "INT01": 0.0,
+          "ICE02": 0.0,
+          "ERS02": 0.0,
+          "CTL02": 0.0,
+          "INT02": 0.0,
+          "ICE03": 0.0,
+          "ICE04": 0.9148,
+          "ERS03": 0.1194,
+          "ERS04": 0.0,
+          "CTL03": 0.0,
+          "CTL04": 0.0,
+          "ICE05": 0.9148,
+          "ERS05": 0.1194,
+          "CTL05": 0.0,
+          "ICE06": 0.9148,
+          "ERS06": 0.1194,
+          "ICE07": 0.9148,
+          "ERS07": 1.0,
+          "CTL06": 0.0,
+          "G02": 1.0,
+          "INT03": 1.0,
+          "INT04": 1.0,
+          "INT05": 1.0,
+          "INT06": 1.0,
+          "CTL07": 0.0,
+          "INT07": 1.0,
+          "INT08": 1.0,
+          "INT09": 1.0,
+          "PM03": 0.0,
+          "PM04": 1.0,
+          "PM05": 1.0,
+          "G03": 1.0
+        }
+      }
+    }
+  ],
+  "risks": [
+    {
+      "id": "R01",
+      "name": "Further electrical supplier disruption",
+      "category": "Supply",
+      "probability": 0.25,
+      "affected_tasks": [
+        "ERS03",
+        "ERS04"
+      ],
+      "impact_days": "3 to 9 per affected task, one shared event",
+      "owner": "Supply chain lead",
+      "trigger": "No confirmed dispatch slot at next supplier review",
+      "mitigation": "Reserve finishing slot, confirm dispatch evidence and maintain alternate logistics quote.",
+      "simulation": "supplier"
+    },
+    {
+      "id": "R02",
+      "name": "Integrated test requires repeat work",
+      "category": "Validation",
+      "probability": 0.2,
+      "affected_tasks": [
+        "INT05"
+      ],
+      "impact_days": "3 to 7 additional working days",
+      "owner": "Validation lead",
+      "trigger": "Validation acceptance criterion missed",
+      "mitigation": "Review entry criteria and diagnostic coverage before the test. Repeat testing remains mandatory after a failure.",
+      "simulation": "retest"
+    },
+    {
+      "id": "R03",
+      "name": "Dyno booking conflict",
+      "category": "Capacity",
+      "probability": null,
+      "affected_tasks": [
+        "ICE07",
+        "ERS07",
+        "INT05",
+        "INT06"
+      ],
+      "impact_days": "Calculated explicitly in the deterministic resource schedule",
+      "owner": "Test lead",
+      "trigger": "Two assignments request Dyno A on the same working day",
+      "mitigation": "Protect one integrated slot and review the priority queue weekly.",
+      "simulation": "resource constraint, not a stochastic event"
+    },
+    {
+      "id": "R04",
+      "name": "Incomplete release evidence",
+      "category": "Readiness",
+      "probability": null,
+      "affected_tasks": [
+        "PM04",
+        "PM05"
+      ],
+      "impact_days": "Release remains blocked until evidence and approvals are complete",
+      "owner": "Configuration lead",
+      "trigger": "Mandatory record lacks accepted status, reference or approver",
+      "mitigation": "Review evidence register weekly and assign an owner for each missing item.",
+      "simulation": "evidence gate, not assigned an invented probability"
+    }
+  ],
+  "actions": [
+    {
+      "id": "A01",
+      "owner": "Supply chain lead",
+      "due_day": 32,
+      "state": "Open",
+      "linked": "R01",
+      "action": "Obtain a written finishing and dispatch commitment for both electrical demonstrators.",
+      "decision": "D01"
+    },
+    {
+      "id": "A02",
+      "owner": "Test lead",
+      "due_day": 33,
+      "state": "Open",
+      "linked": "R03",
+      "action": "Confirm protected Dyno A reservations and the escalation route for a clash.",
+      "decision": "D02"
+    },
+    {
+      "id": "A03",
+      "owner": "Finance lead",
+      "due_day": 33,
+      "state": "Open",
+      "linked": "D01",
+      "action": "Validate the incremental recovery quote and avoid double-counting support costs.",
+      "decision": "D01"
+    },
+    {
+      "id": "A04",
+      "owner": "Validation lead",
+      "due_day": 34,
+      "state": "Open",
+      "linked": "R02",
+      "action": "Agree test entry criteria and retain acceptance scope across recovery options.",
+      "decision": "D02"
+    },
+    {
+      "id": "A05",
+      "owner": "Configuration lead",
+      "due_day": 35,
+      "state": "Open",
+      "linked": "R04",
+      "action": "Assign submission dates for each missing mandatory record.",
+      "decision": "D03"
+    }
+  ],
+  "provenance": {
+    "input_sha256": {
+      "actions.json": "9a5a131e8c395aeb98b6d969b409b2e28304733e50abd1e5ae89ae23f568e820",
+      "config.json": "b58e2133ed874bc44fd9006a8efea98d44d82640193f4975e5f2738d977bc95d",
+      "evidence.json": "278c1489ea0272cd40cfd49adc952170bbbd3cd412b45f1a84d8c9c75a29ccd4",
+      "risks.json": "d01e7a023ddcc9e6999b30be84c039c884c73d3909e1752494c56307f9db24d5",
+      "tasks.csv": "dc1a341cc5314d9bc98b3107865c0160dd019f8a657b39395647510502430879"
+    },
+    "model_version": "1.0.0"
+  }
+}

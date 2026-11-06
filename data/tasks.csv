@@ -1,0 +1,39 @@
+id,name,stream,owner,preds,baseline_days,budget,resource,order,progress,remaining_days,actual_start,actual_finish,actual_cost,etc,ready_day
+PM01,Scope and acceptance criteria,Programme,Programme manager,,3,12000,,0,1.0,0,0,3,12360,0,0
+PM02,Interface and responsibility agreement,Programme,Systems lead,PM01,4,18000,,1,1.0,0,3,7,18540,0,0
+G01,Requirements review,Programme,Technical lead,PM02,0,0,,2,1.0,0,7,7,0,0,0
+ICE01,Combustion assembly requirements,ICE,ICE lead,G01,5,22000,,3,1.0,0,7,12,22660,0,0
+ERS01,Electrical system requirements,ERS,ERS lead,G01,5,25000,,4,1.0,0,7,12,25750,0,0
+CTL01,Controls requirements,Controls,Controls lead,G01,4,18000,,5,1.0,0,7,11,18540,0,0
+INT01,Test article and bench plan,Integration,Test lead,G01,5,20000,,6,1.0,0,7,12,20600,0,0
+ICE02,Detail design and supplier release,ICE,ICE lead,ICE01,7,38000,,7,1.0,0,12,19,39140,0,0
+ERS02,Electrical design and supplier release,ERS,ERS lead,ERS01,7,42000,,8,1.0,0,12,19,43260,0,0
+CTL02,Software architecture,Controls,Controls lead,CTL01;PM02,6,28000,,9,1.0,0,11,17,28840,0,0
+INT02,Bench instrumentation and fixtures,Integration,Test lead,INT01,8,32000,,10,1.0,0,12,20,32960,0,0
+ICE03,Critical castings procurement,ICE,Supply chain lead,ICE02,12,85000,,11,0.917,1,19,,84181,7478,0
+ICE04,Rotating assembly procurement,ICE,Supply chain lead,ICE02,10,65000,,12,0.846,2,19,,59389,10611,0
+ERS03,Energy storage demonstrator delivery,ERS,Supply chain lead,ERS02,14,95000,,13,0.423,15,19,,43400,58104,0
+ERS04,Motor generator demonstrator delivery,ERS,Supply chain lead,ERS02,12,80000,,14,0.55,9,19,,47520,38160,0
+CTL03,Control software implementation,Controls,Controls lead,CTL02,10,44000,,15,1.0,0,17,29,45320,0,0
+CTL04,Hardware in loop test preparation,Controls,Validation lead,CTL02,7,25000,,16,1.0,0,17,24,25750,0,0
+ICE05,Incoming inspection,ICE,Quality lead,ICE03;ICE04,3,12000,,17,0.0,3,,,0,12240,0
+ERS05,Electrical incoming inspection,ERS,Quality lead,ERS03;ERS04,3,14000,,18,0.0,3,,,0,14280,0
+CTL05,Hardware in loop validation,Controls,Validation lead,CTL03;CTL04,6,30000,HIL rig,19,0.167,5,29,,5411,26489,0
+ICE06,ICE test assembly,ICE,Build lead,ICE05,5,35000,,20,0.0,5,,,0,35700,0
+ERS06,Electrical subsystem assembly,ERS,Build lead,ERS05,4,28000,,21,0.0,4,,,0,28560,0
+ICE07,ICE subsystem test,ICE,Test lead,ICE06;INT02,7,50000,Dyno A,22,0.0,7,,,0,51000,0
+ERS07,Electrical subsystem test,ERS,Test lead,ERS06;INT02,6,42000,Dyno A,23,0.0,6,,,0,42840,0
+CTL06,Calibration package review,Controls,Controls lead,CTL05,3,14000,,24,0.0,3,,,0,14280,0
+G02,Subsystem evidence review,Programme,Technical lead,ICE07;ERS07;CTL06,0,0,,25,0.0,0,,,0,0,0
+INT03,Power unit demonstrator integration,Integration,Systems lead,G02,5,38000,,26,0.0,5,,,0,38760,0
+INT04,First integrated bench run,Integration,Test lead,INT03,3,25000,Dyno A,27,0.0,3,,,0,25500,0
+INT05,Integrated endurance validation,Integration,Validation lead,INT04,8,65000,Dyno A,28,0.0,8,,,0,66300,0
+INT06,Thermal and energy validation,Integration,Validation lead,INT04,6,48000,Dyno A,29,0.0,6,,,0,48960,0
+CTL07,Calibration refinement,Controls,Controls lead,INT04,5,22000,HIL rig,30,0.0,5,,,0,22440,0
+INT07,Teardown and nonconformance review,Integration,Quality lead,INT05;INT06,3,18000,,31,0.0,3,,,0,18360,0
+INT08,Corrective action closure,Integration,Systems lead,INT07;CTL07,4,26000,,32,0.0,4,,,0,26520,0
+INT09,Regression validation,Integration,Validation lead,INT08,4,35000,Dyno A,33,0.0,4,,,0,35700,0
+PM03,Cost to complete reconciliation,Programme,Finance lead,G02,3,10000,,34,0.0,3,,,0,10200,0
+PM04,Configuration and evidence dossier,Programme,Configuration lead,INT09;PM03,3,14000,,35,0.0,3,,,0,14280,0
+PM05,Cross site interface acceptance,Programme,Systems lead,PM04,2,10000,,36,0.0,2,,,0,10200,0
+G03,Demonstrator release decision,Programme,Programme manager,PM05,0,0,,37,0.0,0,,,0,0,0

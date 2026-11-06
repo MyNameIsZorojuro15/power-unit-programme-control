@@ -1,0 +1,63 @@
+[
+  {
+    "id": "R01",
+    "name": "Further electrical supplier disruption",
+    "category": "Supply",
+    "probability": 0.25,
+    "affected_tasks": [
+      "ERS03",
+      "ERS04"
+    ],
+    "impact_days": "3 to 9 per affected task, one shared event",
+    "owner": "Supply chain lead",
+    "trigger": "No confirmed dispatch slot at next supplier review",
+    "mitigation": "Reserve finishing slot, confirm dispatch evidence and maintain alternate logistics quote.",
+    "simulation": "supplier"
+  },
+  {
+    "id": "R02",
+    "name": "Integrated test requires repeat work",
+    "category": "Validation",
+    "probability": 0.2,
+    "affected_tasks": [
+      "INT05"
+    ],
+    "impact_days": "3 to 7 additional working days",
+    "owner": "Validation lead",
+    "trigger": "Validation acceptance criterion missed",
+    "mitigation": "Review entry criteria and diagnostic coverage before the test. Repeat testing remains mandatory after a failure.",
+    "simulation": "retest"
+  },
+  {
+    "id": "R03",
+    "name": "Dyno booking conflict",
+    "category": "Capacity",
+    "probability": null,
+    "affected_tasks": [
+      "ICE07",
+      "ERS07",
+      "INT05",
+      "INT06"
+    ],
+    "impact_days": "Calculated explicitly in the deterministic resource schedule",
+    "owner": "Test lead",
+    "trigger": "Two assignments request Dyno A on the same working day",
+    "mitigation": "Protect one integrated slot and review the priority queue weekly.",
+    "simulation": "resource constraint, not a stochastic event"
+  },
+  {
+    "id": "R04",
+    "name": "Incomplete release evidence",
+    "category": "Readiness",
+    "probability": null,
+    "affected_tasks": [
+      "PM04",
+      "PM05"
+    ],
+    "impact_days": "Release remains blocked until evidence and approvals are complete",
+    "owner": "Configuration lead",
+    "trigger": "Mandatory record lacks accepted status, reference or approver",
+    "mitigation": "Review evidence register weekly and assign an owner for each missing item.",
+    "simulation": "evidence gate, not assigned an invented probability"
+  }
+]

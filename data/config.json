@@ -1,0 +1,76 @@
+{
+  "start_date": "2027-01-11",
+  "status_day": 30,
+  "target_day": 95,
+  "holidays": [],
+  "calendar": "Monday to Friday; no holiday exclusions in the fictional demo",
+  "finish_convention": "Start-of-day boundaries; intervals are [start, finish). A finish date is the next available workday boundary.",
+  "seed": 2314893,
+  "simulation_runs": 5000,
+  "duration_low": 0.9,
+  "duration_high": 1.2,
+  "supplier_event_days": [
+    3,
+    9
+  ],
+  "retest_days": [
+    3,
+    7
+  ],
+  "delay_cost_per_day": 1800,
+  "cases": [
+    {
+      "id": "current",
+      "name": "Current forecast",
+      "description": "Keep current supplier dates and test plan.",
+      "task_changes": {},
+      "incremental_cost": 0,
+      "supplier_event_probability": 0.25,
+      "retest_probability": 0.2,
+      "approval": "Reference forecast"
+    },
+    {
+      "id": "expedite",
+      "name": "Expedite supply",
+      "description": "Reserve supplier finishing capacity and expedited delivery. Retain the same acceptance scope.",
+      "task_changes": {
+        "ERS03": {
+          "remaining_days": 7
+        },
+        "ERS04": {
+          "remaining_days": 4
+        }
+      },
+      "incremental_cost": 18000,
+      "supplier_event_probability": 0.1,
+      "retest_probability": 0.2,
+      "approval": "Proposed, not approved"
+    },
+    {
+      "id": "recovery",
+      "name": "Coordinated recovery",
+      "description": "Expedite supply plus a dedicated integration engineer and parallel evidence preparation. Test durations and acceptance scope stay unchanged.",
+      "task_changes": {
+        "ERS03": {
+          "remaining_days": 7
+        },
+        "ERS04": {
+          "remaining_days": 4
+        },
+        "INT03": {
+          "remaining_days": 4
+        },
+        "INT08": {
+          "remaining_days": 3
+        },
+        "PM04": {
+          "remaining_days": 2
+        }
+      },
+      "incremental_cost": 31000,
+      "supplier_event_probability": 0.1,
+      "retest_probability": 0.15,
+      "approval": "Proposed, not approved"
+    }
+  ]
+}
