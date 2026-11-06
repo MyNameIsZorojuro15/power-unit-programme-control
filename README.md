@@ -8,7 +8,7 @@ A supplier delivery slips. This project traces the effect through a fictional po
 
 ## Start with the result
 
-Open **[the interactive management report](outputs/management_report.html)** in a browser after downloading the repository. It runs offline and needs no server, accounts or external scripts. GitHub's file viewer displays HTML source rather than running it.
+Open **[the live interactive management report](https://mynameiszorojuro15.github.io/power-unit-programme-control/)**, or download [the offline report](outputs/management_report.html) and open it in a browser. The downloaded report needs no server, accounts or external scripts. GitHub's file viewer displays HTML source rather than running it.
 
 - [Three-page management brief](outputs/audi-2314893/Daniel_Freire_Power_Unit_Case_Study.pdf): recommendation, schedule, uncertainty, cost and decisions.
 - [Editable Excel workbook](outputs/audi-2314893/Power_Unit_Programme_Control.xlsx): deterministic scenario selector, activity plan, cost control, evidence, actions and risks.
